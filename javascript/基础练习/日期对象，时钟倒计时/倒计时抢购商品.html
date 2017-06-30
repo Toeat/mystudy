@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			h2,ul,p,img{
+				margin:0;
+				padding:0;
+			}
+			li{
+				list-style:none;
+			}
+			.top{
+				width:600px;
+				height:300px;
+			}
+			.top-title{
+				color:#555;
+			}
+			.top-content{
+				width:600px;
+				height:270px;
+				border-top:3px solid #555;
+			}
+			.top-content .top-ul{
+				width:150px;
+				height:270px;
+				position:relative;
+				float:left;
+			}
+			
+			.top-ul .top-ul-li{
+				width:148px;
+				height:270px;
+				opacity:1;
+				filter:opacity(alpha=100);
+				border-left:2px solid #555;
+				position: absolute;
+    			left: 0;
+   			    top: 0;
+			}
+			
+			.top-ul .top-ul-img{
+				width:148px;
+				height:270px;
+				position: absolute;
+    			left: 0;
+   			    top: 0;
+			}
+			
+			/*.top li:first-child{
+				border-left:none;
+				width:150px;
+			}*/
+			
+			.top-ul-li div{
+				width:140px;
+				height:260px;
+				padding:5px;
+			}
+			
+			.top-ul-li .time{
+				width:90px;
+				background:#E5E3E3;
+				border:none;
+			}
+			
+			.top-ul-li .confirm{
+				width:42px;
+				border:none;
+				font-size:14px;
+			}
+			
+			.top-ul-li .reti{
+				width:148px;
+				margin-top:10px;
+				font-size:12px;
+				color:#9B9B9B;
+				border:none;
+			}
+			
+			.top-ul-li .img1{
+				width:140px;
+				height:150px;
+				margin-top:15px;
+			}
+			
+			.top-ul-li p{
+				font-size:12px;
+				
+			}
+			
+			.top-ul-li .a1{
+				font-size:13px;
+				font-weight:bold;
+				color:#555;
+				margin-left:22px;
+			}
+			.top-ul-li .a2{
+				font-size:13px;
+				font-weight:bold;
+				color:red;
+			}
+			
+			
+			
+			.bottom{
+				margin-top:50px;
+				width:600px;
+			}
+			
+			.bottom .bot-title{
+				width:600px;
+				height:50px;
+				background:#9B9B9B;
+			}
+			
+			.bot-title .span1{
+				width:200px;
+				height:50px;
+				display:block;
+				font-size:22px;
+				color:#600;
+				line-height:50px;
+				text-align:center;
+				float:left;
+			}
+			
+			.bot-title .span2{
+				width:150px;
+				height:50px;
+				display:block;
+				font-size:22px;
+				color:#600;
+				line-height:50px;
+				text-align:center;
+				float:left;
+			}
+			
+			.bottom .total{
+				display:block;
+				font-weight:bold;
+				font-size:20px;
+				margin-top:10px;
+				margin-left:5px;
+			}
+			
+			.bottom .total b{
+				color:red;
+			}
+			
+			.bottom ul{
+				width:600px;
+			}
+			
+			.bottom li{
+				width:600px;
+				height:80px;
+				margin-top:5px;
+				background:#9B9B9B;
+			}
+			
+			.bottom .p1{
+				width:200px;
+				height:80px;
+				font-size:10px;
+				line-height:80px;
+				text-align:center;
+				overflow: hidden;
+				white-space: nowrap;
+   				text-overflow: ellipsis;
+   				float:left;
+			}
+			
+			.bottom .p2{
+				width:150px;
+				height:80px;
+				font-size:10px;
+				line-height:80px;
+				text-align:center;
+   				float:left;
+			}
+			
+			.bottom li img{
+				width:100px;
+				height:60px;
+				border:1px solid #600;
+				margin-top:10px;
+				margin-left:80px;
+			}
+		</style>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../../Own工具/oWnJQ.js"></script>
+		<script>
+			window.onload = function(){
+				var aTime = document.getElementsByClassName('time');	
+				var aCon = document.getElementsByClassName('confirm');
+				var aReti = document.getElementsByClassName('reti');
+				var content = document.getElementsByClassName('top-content')[0];
+				var aUl = content.getElementsByTagName('ul');
+				var aLi = document.getElementsByClassName('top-ul-li');
+				var aP = document.getElementsByClassName('introd');
+				var oUl = document.getElementsByClassName('bot-ul')[0];
+				var aA = document.getElementsByClassName('a2');
+				var bottom = document.getElementsByClassName('bottom')[0];
+				var num = 0;
+				var aB = document.getElementsByTagName('b')[0];
+
+				
+				
+				var str1 = '<img class="top-ul-img" src="img/bg.jpg">';
+				var arr = ['1299.00','1299.00','1299.00','1299.00'];
+					
+				
+				for(var i = 0; i < aCon.length; i++){
+					
+					aCon[i].index = i;
+					aCon[i].onclick = function(){
+						var Timeval = aTime[this.index].value;
+						var that = this;
+						iTime(aReti[this.index], Timeval, function(){
+							shake(aLi[that.index], 'left', function(){
+								opacity(aLi[that.index], 20, 0, function(){
+									aLi[that.index].style.opacity = '1';
+									aLi[that.index].style.filter = 'alpha(opacity=100)';
+								});
+								doMove(aLi[that.index], 'top', 15, 200, function(){
+									aLi[that.index].innerHTML += str1;
+									aLi[that.index].style.top = '0';
+									num +=parseFloat(arr[that.index]);
+									aB.innerHTML = num;
+									
+									oUl.innerHTML += '<li><p class="p1">'+ aP[that.index].innerHTML +'</p><p class="p2">'+ aA[that.index].innerHTML +'</p><img src="img/1-0.jpg"></li>';
+								});
+							});
+						});
+					}
+				}
+				
+				function iTime(obj, time, endFn){
+					clearInterval(obj.iTime);
+					obj.iTime = setInterval(function(){
+						var iNow = new Date();
+						var iNew = new Date(time);
+						var str = '';
+						t = Math.floor((iNew - iNow)/1000);
+						
+						var iDate = change(Math.floor(t/86400));
+						var iHour = change(Math.floor(t%86400/3600));
+						var iMin = change(Math.floor(t%86400%3600/60));
+						var iSec = change(t%60);
+						
+						if(t >= 0){
+							str = '剩余'+iDate+'天'+iHour+'小时'+iMin+'分'+iSec+'秒';
+							obj.value = str;
+						}else{
+							clearInterval(obj.iTime);
+							endFn&&endFn();
+						}
+						
+					},1000);
+					
+					function change(n){
+						return n < 10 ? n = '0' + n : n = '' + n;
+ 					}
+				}
+				
+				/*<li>
+					<p class="p1">p.value</p><p class="p2">a2.value</p>
+					<img src="img/1-0.jpg">
+				</li>*/
+			}		
+		</script>
+	</head>
+	<body>
+		<div class="top">
+			<h2 class="top-title">限购时间</h2>
+			<div class="top-content">
+				<ul class="top-ul">
+					<li class="top-ul-li">
+						<div>
+							<input class="time" type="text" value="February 7,2017 12:12:12">
+							<input class="confirm" type="button" value="确定">
+							<input class="reti" type="text" value="剩余00天00时00分00秒" />
+							<img class="img1" src="img/1-0.jpg" />
+							<p class="introd">Delonghi德龙ECO310.VGR泵压式半自动咖啡机</p>
+							<a class="a1">抢购价:</a><a class="a2">￥1299</a>
+						</div>
+					</li>
+				</ul>
+				<ul class="top-ul">
+					<li class="top-ul-li">
+						<div>
+							<input class="time" type="text" value="February 7,2017 12:12:12">
+							<input class="confirm" type="button" value="确定">
+							<input class="reti" type="text" value="剩余00天00时00分00秒" />
+							<img class="img1" src="img/1-0.jpg" />
+							<p class="introd">Delonghi德龙ECO310.VGR泵压式半自动咖啡机</p>
+							<a class="a1">抢购价:</a><a class="a2">￥1299</a>
+						</div>
+					</li>
+				</ul>
+				<ul class="top-ul">
+					<li class="top-ul-li">
+						<div>
+							<input class="time" type="text" value="February 7,2017 12:12:12">
+							<input class="confirm" type="button" value="确定">
+							<input class="reti" type="text" value="剩余00天00时00分00秒" />
+							<img class="img1" src="img/1-0.jpg" />
+							<p class="introd">Delonghi德龙ECO310.VGR泵压式半自动咖啡机</p>
+							<a class="a1">抢购价:</a><a class="a2">￥1299</a>
+						</div>
+					</li>
+				</ul>
+				<ul class="top-ul">
+					<li class="top-ul-li">
+						<div>
+							<input class="time" type="text" value="February 7,2017 12:12:12">
+							<input class="confirm" type="button" value="确定">
+							<input class="reti" type="text" value="剩余00天00时00分00秒" />
+							<img class="img1" src="img/1-0.jpg" />
+							<p class="introd">Delonghi德龙ECO310.VGR泵压式半自动咖啡机</p>
+							<a class="a1">抢购价:</a><a class="a2">￥1299</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="bottom">
+			<p class="bot-title">
+				<span class="span1">商品名称</span>
+				<span class="span2">价格</span>
+			</p>
+			
+			<ul class="bot-ul">
+			</ul>
+			
+			<span class="total">总价：<b>00.00</b>元</span>
+		</div>
+	</body>
+</html>

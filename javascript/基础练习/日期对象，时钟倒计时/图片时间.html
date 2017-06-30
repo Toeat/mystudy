@@ -1,0 +1,215 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<style>
+		li{
+			list-style: none;
+			float:left;
+			padding:0;
+			margin:0;
+		}
+		
+		li{
+			width:60px;
+			height:100px;
+			position:relative;
+			overflow: hidden;
+		}
+		
+		div{
+			width:60px;
+			height:200px;
+			position:absolute;
+			top:0;
+			left:0;
+		}
+		
+		img{
+			width:60px;
+			height:100px;
+		}
+	</style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+
+<script src="../../Own工具/oWnJQ.js"></script>
+
+<script>
+
+window.onload = function () {
+
+	var oBody = document.body;
+	var oP = document.getElementById('time');
+	var aDiv = document.getElementsByTagName('div');
+	var aShow = document.getElementsByClassName('show');
+	var aColon = document.getElementsByClassName('colon');
+	var offOn = true;
+	var num = 0;
+	
+	var arrNum = [0,2,5,7,10];
+	var arrNum2 = [1,3,6,8,11];
+	var	arrNum3 = [4,9];
+	var arrDiv =[0,1,3,4,6,7]
+	var arrImg = [
+		'img/0.JPG','img/1.JPG','img/2.JPG','img/3.JPG','img/4.JPG',
+		'img/5.JPG','img/6.JPG','img/7.JPG','img/8.JPG','img/9.JPG',
+	]
+	var arrImg2 = ['img/colon0.jpg','img/colon1.JPG'];
+	var arrColon = [];
+	
+//	Colon();
+	
+	//冒号闪烁
+	
+	for(var i = 0; i < aColon.length; i++){
+		arrColon.push(aColon[i].getElementsByTagName('img')[0]);
+	}
+	
+	function Colon(){
+		setInterval(function(){	
+			num++;	
+			for(var i = 0; i < aColon.length; i++){
+				arrColon[i].src = arrImg2[num % aColon.length];
+			}
+		},500)
+	}
+	//冒号闪烁 end
+	
+	
+	for(var i = 0; i < aShow.length; i++){
+		aShow[i].onOff = true;
+		aShow[i].index = i;
+		aShow[i].iNum = 0;
+	}
+	
+	//时间
+	function fnTime () {
+		var myTime = new Date();
+		var str = '';
+		
+		var iHour = myTime.getHours();
+		var iMin = myTime.getMinutes();
+		var iSec = myTime.getSeconds();
+		
+		str = toTwo(iHour)+toTwo(iMin)+toTwo(iSec);
+		
+		oP.innerHTML = str;
+		
+		
+		//时间函数
+		function intFn(obj,arrImg){
+			var aImg = obj.getElementsByTagName('img');
+			
+			if(obj.onOff){
+				obj.iNum = parseInt(str.charAt(obj.index)); //'1'
+				obj.iNow0 = parseInt(str.charAt(obj.index)); //1
+				obj.onOff = false;
+				
+				for(var i = 0; i < aImg.length; i++){
+					aImg[i]['src'] = arrImg[obj.iNum % arrImg.length];//'0,1''0,1'
+					obj.iNum++ //'2,3'
+				}
+				
+				obj.iNum --; //'2'
+			}
+		}
+		
+		//时间初始化
+		if(offOn){
+			for(var i = 0; i < aShow.length; i++){
+				intFn(aShow[i], arrImg);
+				offOn = false;
+			}
+		}
+		
+		//图片上翻函数
+		function imgMove(obj, arrImg){
+			var aImg = obj.getElementsByTagName('img');
+			aImg[1].src = arrImg[obj.iNow1 % arrImg.length];
+			
+			doMove(obj, 'top', 5, -103,function(){
+				aImg[0].src = arrImg[obj.iNow1 % arrImg.length];
+				obj.style.top = 0;
+			});		
+		}
+		
+		for(var i = 0; i < aShow.length; i++){
+			aShow[i].iNow1 = parseInt(str.charAt(i));
+			
+			if(aShow[i].iNow1 != aShow[i].iNow0){
+				imgMove(aShow[i], arrImg);
+				aShow[i].iNow0 = aShow[i].iNow1;
+			}
+		}
+	}
+	
+	setInterval(function(){
+		fnTime();	
+	}, 500 );
+	
+	fnTime ();
+	Colon();
+};
+
+
+function toTwo ( n ) {
+	return n < 10 ?  '0' + n : '' + n;
+}
+
+</script>
+
+</head>
+
+
+<body>
+<p id="time" style="font-size:60px;"></p>
+<ul>
+	<li>
+		<div class="show">
+			<img src="img/0.JPG" />
+			<img src="img/0.JPG" />
+		</div>
+	</li>
+	<li>
+		<div class="show">
+			<img src="img/0.JPG" />
+			<img src="img/0.JPG" />
+		</div>
+	</li>
+	<li>
+		<div class="colon">
+			<img src="img/colon0.jpg" />
+		</div>
+	</li>
+	<li>
+		<div class="show">
+			<img src="img/0.JPG" />
+			<img src="img/0.JPG" />
+		</div>
+	</li>
+	<li>
+		<div class="show">
+			<img src="img/0.JPG" />
+			<img src="img/0.JPG" />
+		</div>
+	</li>
+	<li>
+		<div class="colon">
+			<img src="img/colon0.jpg" />
+		</div>
+	</li>
+	<li>
+		<div class="show">
+			<img src="img/0.JPG" />
+			<img src="img/0.JPG" />
+		</div>
+	</li>
+	<li>
+		<div class="show">
+			<img src="img/0.JPG" />
+			<img src="img/0.JPG" />
+		</div>
+	</li>
+</ul>
+</body>
+</html>
