@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			body{
+				background:#FCF2CF;
+				position:relative;
+			}
+			
+			ul{
+				margin:0;
+				padding:0;
+			}
+			
+			li{
+				list-style:none;
+			}
+			
+			.txt span{
+				background:#99FF33;
+			}
+			
+			.text{
+				width:500px;
+				height:230px;
+				margin:0 auto;
+				background:#fff;
+				font-size:17px;
+				font-weight:bold;
+				padding:18px;
+				position:relative;
+			}
+			
+			.bot{
+				width:70px;
+				height:140px;
+				position:absolute;
+				top:0;
+				left:550px;
+			}
+			
+			.bot .hide{
+				width:70px;
+				height:40px;
+				background:#DFDFDF;
+				margin-top:1px;
+				line-height:40px;
+				text-align:center;
+				font-weight:bold;
+				display:none;
+			}
+			
+			.bot .show{
+				width:70px;
+				height:40px;
+				background:#B7B7B7;
+				margin-top:1px;
+				line-height:40px;
+				text-align:center;
+				font-weight:bold;
+				display:block;
+				color:#fff;
+			}
+			
+			.hide:hover{
+				background:#F47500;
+				color:#fff;
+			}
+			
+			.show:hover{
+				background:#9B9B9B;
+			}
+			
+			.alter{
+				width:506px;
+				height:120px;
+				border:15px solid #F34949;
+				background:#FFA500;
+				display:none;
+				position:absolute;
+				top:282px;
+				left:0;
+			}
+			
+			.alter ul{
+				width:450px;
+				height:30px;
+				border-bottom:2px solid red;
+				margin:10px auto;
+			}
+			
+			.alter ul li{
+				float:left;
+				width:80px;
+				height:30px;
+				line-height:30px;
+				text-align:center;
+				font-weight:bold;
+			}
+			
+			.alter ul .show{
+				background:red;
+				color:#fff;
+			}
+			
+			.lookup{
+				width:506px;
+				height:50px;
+				margin-top:20px;
+				margin-left:28px;
+				display:block;
+			}
+			
+			.replace{
+				width:506px;
+				height:50px;
+				margin-top:20px;
+				margin-left:28px;
+				display:none;
+			}
+			
+		</style>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../../Own工具/oWnJQ.js"></script>
+		<script>
+			window.onload = function(){
+				var oTxt = document.getElementsByClassName('txt')[0];
+				var oBot = document.getElementsByClassName('bot')[0];
+				var oAlt = document.getElementsByClassName('alter')[0];
+				var aLi = oAlt.getElementsByTagName('li');
+				var aBtn = oBot.getElementsByTagName('li');
+				var aDiv = oAlt.getElementsByTagName('div');
+				var aInput1 = aDiv[0].getElementsByTagName('input');
+				var aInput2 = aDiv[1].getElementsByTagName('input');
+				
+				var onOff = true;
+				
+				for(var i = 0; i < aBtn.length; i++){
+					aBtn[i].index = i;
+					
+					if(i<2){
+						aLi[i].index = i;
+						aLi[i].onclick = function(){
+							for(var j = 0; j < aLi.length; j++){
+								aLi[j].className = '';
+								aDiv[j].style.display = 'none';
+							}
+							
+							this.className = 'show';
+							aDiv[this.index].style.display = 'block';
+						}
+					}
+				}
+				
+				
+				aBtn[0].onclick = function(){
+					if(onOff){
+						for(var i = 0; i < aBtn.length; i++){
+							aBtn[i].style.display = 'block';
+						}	
+						
+						onOff = false;
+					}else{
+						for(var i = 1; i < aBtn.length; i++){
+							aBtn[i].style.display = 'none';
+						}
+						onOff = true;
+					}
+				}
+				
+				aBtn[1].onclick =function(){
+					loop();
+					aLi[this.index - 1].className = 'show';
+					aDiv[this.index - 1].style.display = 'block';
+					aDiv[this.index].style.display = 'none';
+					
+				}
+				
+				
+				aBtn[2].onclick =function(){
+					loop();
+					aLi[this.index - 1].className = 'show';
+					aDiv[this.index - 2].style.display = 'none';
+					aDiv[this.index - 1].style.display = 'block';
+					
+					
+				}
+				
+				
+				aInput1[1].onclick = function(){
+					var str1 = aInput1[0].value;
+					
+					if(!str1){
+						alert('请输入文字');
+						return;
+					}else if(oTxt.innerHTML.indexOf(aInput1[0].value) == -1){
+						alert('没有找到文字');
+						return;
+					}
+					
+					oTxt.innerHTML = oTxt.innerHTML.split(str1).join('<span>'+ str1 +'</span>');
+					
+					aInput1[0].value = '';
+				}
+				
+				aInput2[2].onclick = function(){
+					var str1 = aInput2[0].value;
+					var str2 = aInput2[1].value;
+					
+					if(!str1){
+						alert('请输入文字');
+						return;
+					}else if(oTxt.innerHTML.indexOf(aInput2[0].value) == -1){
+						alert('没有找到文字');
+						return;
+					}else if(str2 == ''){
+						if(confirm('你确定要删除么')){
+							oTxt.innerHTML = oTxt.innerHTML.split(str1).join('');
+						};
+						aInput2[0].value = '';
+						return;
+					};
+					
+					oTxt.innerHTML = oTxt.innerHTML.split(str1).join('<span>'+ str2 +'</span>');
+					
+					aInput2[0].value = '';
+					aInput2[1].value = '';
+				}
+				
+				function loop(){
+					for(var i = 1; i < aBtn.length; i++){
+							aBtn[i].style.display = 'none';
+							
+							aLi[i-1].className = '';
+					}
+					onOff = true;
+					
+					oAlt.style.display = 'block';
+	
+				}
+				
+				
+			}
+		</script>
+	</head>
+	<body>
+		<div class="text">
+			<div class="txt">
+			秦淮河里的船，比北京万甡园，颐和园的船好，比西湖的船好，比扬州瘦西湖的船也好。
+			这几处的船不是觉着笨，就是觉着简陋、局促；都不能引起乘客们的情韵，如秦淮河的船一
+			样。秦淮河的船约略可分为两种：一是大船；一是小船，就是所谓七板子。大船舱口阔大，
+			可容二三十人。里面陈设着字画和光洁的红木家具，桌上一律嵌着冰凉的大理石面。窗格雕镂颇细，
+			使人起柔腻之感。窗格里映着红色蓝色的玻璃；玻璃上有精致的花纹，也颇悦人目。七板子规模虽
+			不及大船，但那淡蓝色的栏干，空敞的舱，也足系人情思。而最出色处却在它的舱前。舱前是甲板
+			上的一部。上面有弧形的顶，两边用疏疏的栏干支着。里面通常放着两张藤的躺椅。躺下，可以谈
+			天，可以望远，可以顾盼两岸的河房。
+			</div>
+			<ul class="bot">
+				<li class="show">展开</li>
+				<li class="hide">查找</li>
+				<li class="hide">替换</li>
+			</ul>
+			<div class="alter">
+				<ul class="">
+					<li class="show">查找</li>
+					<li class="">替换</li>
+				</ul>
+				<div class="lookup">
+					<input type="text" >
+					<input type="button" value="查找" >
+				</div>
+				<div class="replace">
+					<input type="text" >
+					<input type="text" >
+					<input type="button" value="替换" >
+				</div>
+			</div>
+		</div>
+		
+	</body>
+</html>
+ 
