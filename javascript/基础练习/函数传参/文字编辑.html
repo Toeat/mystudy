@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<style>
+			ul{
+				width:300px;
+				margin:0;
+				padding:0;
+				border:1px solid #000000;
+			}
+			li{
+				margin:0;
+				padding:0;
+				list-style:none;
+			}
+			.li-title{
+				width:280px;
+				height:30px;
+				line-height:30px;
+				background:#008000;
+				font-weight:bold;
+				color:#fff;
+				padding-left:20px;
+			}
+			.li-item{
+				width:280px;
+				height:40px;
+				padding-left:20px;
+				line-height:40px;
+				font-size:15px;
+				border-bottom:1px solid #99FF33;
+			}
+			.img-css{
+				width:16px;
+				height:16px;
+				margin-left:10px;
+			}
+			.btn-css{
+				width:100px;
+				height:20px;
+			}
+			a{
+				margin-left:5px;
+			}
+		</style>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>无标题文档</title>
+		<script>
+			window.onload = function(){
+				var oUl = document.getElementById('ul1');
+				var oLi = oUl.getElementsByTagName('li');
+				
+				for(var i = 1; i<oLi.length; i++){
+					ImgCilck(oLi[i]);
+				}
+				
+				function ImgCilck(li){
+					var oSpan = li.getElementsByTagName('span')[0];
+					var oImg = li.getElementsByTagName('img')[0];
+				
+					li.onclick = function(ev){
+						var ev = ev || window.event;
+						var target = ev.target || ev.srcElement;
+						var oBtn = li.getElementsByTagName('input')[0];
+						
+						if(target.nodeName.toLowerCase() == 'img'){
+							li.innerHTML='<input class="btn-css" type="text" value="第一行文字"><a id="bc">保存</a><a id="qx">取消</a>';
+						}
+						
+						if(target.nodeName.toLowerCase() == 'a'){
+							switch(target.id){
+								case 'bc':
+									li.innerHTML = '<span>'+ oBtn.value +'</span><img class="img-css" src="img/1.png">';
+									break;
+								case 'qx':
+									li.innerHTML = '<span>第一行文字</span><img class="img-css" src="img/1.png">';
+									break;
+							}
+						}
+					}
+				}
+			}
+		</script>
+	</head>
+
+	<body>
+	<ul id="ul1">
+		<li class="li-title"><span>分类名称</span></li>
+		<li class="li-item"><span>第一行文字</span><img class="img-css" src="img/1.png"></li>	
+		<li class="li-item"><span>第二行文字</span><img class="img-css" src="img/1.png"></li>
+	</ul>
+	</body>
+
+</html>

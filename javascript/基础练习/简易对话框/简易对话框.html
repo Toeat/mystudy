@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			li{
+				list-style: none;
+			}
+			.div1{
+				width:320px;
+				height:665px;
+				background:url(img/1.jpg) no-repeat -340px;;
+				position:relative;
+			}
+			.div2{
+				width:263px;
+				height:473px;
+				border:2px solid black;
+				background:whitesmoke;
+				position:absolute;
+				top:95px;
+				left:20px;
+			}
+			
+			.div3{
+				width:263px;
+				height:50px;
+				background:#DFDFDF;
+				position:absolute;
+				top:520px;
+				left:22px;
+			}
+			
+			.img1{
+				width:30px;
+				height:30px;
+				float: left;
+				margin-top:10px;
+				margin-left:5px;
+			}
+			
+			.text1{
+				display: block;
+				float: left;
+				margin:15px 6px; 
+			}
+			.span1{
+				display: block;
+				float: left;
+				margin:17px 5px; 
+			}
+			
+			.li1{
+				width:100%;
+				height:50px;
+				float: left;
+				margin-top:10px;
+			}
+			
+			.p1{
+				display: block;
+				float: left;
+				margin:17px 5px; 
+			}
+			
+			.img2{
+				float:left;
+			}
+			
+			.li2{
+				width:100%;
+				height:50px;
+				float: right;
+				margin-top:15px;
+			}
+			
+			.p2{
+				display: block;
+				float: right;
+				margin:20px 5px; 
+			}
+			
+			.img3{
+				float: right;
+			}
+			
+		</style>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			window.onload=function(){
+				var oDiv2 = document.getElementById('div2'),
+					oImg = document.getElementById('img'),
+					oText = document.getElementById('text'),
+					oBtn = document.getElementById('btn'),
+					oP = document.getElementById('p1'),
+					Arr =['img/2.jpg','img/3.jpg'],
+					onoff = true;
+					
+				
+				oImg.onclick = function(){
+					if(onoff){
+						oImg.src = Arr[1];
+						onoff = false;
+					}else{
+						oImg.src = Arr[0];
+						onoff = true;
+					}
+				}
+					
+				oBtn.onclick = function (){
+					if(onoff){
+						oDiv2.innerHTML += '<li class="li1">'+'<img class="img3" src="'+ Arr[0] +'"/>' + '<p id="p1" class="p2">'+ oText.value +'</p>'+'</li>';
+					}else{
+						oDiv2.innerHTML += '<li class="li2">'+'<img class="img2" src="'+ Arr[1] +'"/>' + '<p id="p1" class="p1">'+ oText.value +'</p>'+'</li>';
+					}
+					oText.value ='';
+				}
+				
+			}
+		</script>
+		
+	</head>
+	<body>
+		<div id="div1" class="div1">
+			<div id="div2" class="div2">
+				<ul></ul>
+			</div>
+			<div class="div3">
+					<img id="img" class="img1" src="img/2.jpg"/>
+					<input id="text" class="text1" type="text" />
+					<span id="btn"  class="span1">发送</span>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			ul{
+				margin:0;
+				padding:0;
+			}
+		
+			li{
+				list-style:none;
+				border:1px solid orangered;
+				margin-top:3px;
+				text-align:center;
+				line-height:38px;
+			}
+			
+			a{
+				display:block;
+				width:68px;
+				height:38px;
+				text-decoration: none;
+				color:#000;
+			}
+			
+			a:hover{
+				color:#fff;
+				background:orangered;
+			}
+			
+			.active{
+				color:#FFF;
+				background:orangered;
+			}
+		
+			.content{
+				width:350px;
+				height:250px;
+			}
+			
+			.left, .right{
+				width:70px;
+				height:250px;
+			}
+			
+			.left{
+				float:left;
+			}
+			
+			.right{
+				float:right;
+			}
+			
+			.min{
+				width:210px;
+				height:254px;
+				float:left;
+				
+			}
+			
+			.min img{
+				width:210px;
+				height:254px;	
+				margin-top:3px;
+			}
+			
+		</style>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			window.onload = function(){
+				var oDiv = document.getElementById('slide');
+				var aLi = oDiv.getElementsByTagName('li');
+				var oImg = document.getElementById('img');
+				var timer = null;
+				var num = 0;
+				var onOff = true;
+				
+				
+				function slide(){
+					timer = setInterval(function(){
+						
+						initial(num);
+						
+						if(onOff){
+							if(num < aLi.length-1){
+								num++;
+							}else{
+								onOff = false;
+							}
+						}else{
+							if(num != 0){
+								num--;
+							}else{
+								onOff = true;
+							}
+						}
+					},1000);
+				};
+				
+				slide();
+				
+				for(var i = 0; i<aLi.length; i++){
+					
+					aLi[i].index = i;
+					
+					aLi[i].onmouseover = over;
+					aLi[i].onmouseout = slide;	
+				}
+				
+				function over(){
+					clearInterval(timer);
+					for(var j = 0; j<aLi.length; j++){
+						aLi[j].className = '';
+					}	
+					aLi[this.index].className = 'active';
+					num = this.index;
+					initial(num);
+				}
+				
+				function initial(num){
+					for(var i = 0; i<aLi.length; i++){
+						aLi[i].className = '';
+					}	
+					aLi[num].className = 'active';
+					oImg.src = 'img/'+(num+1)+'.jpg';
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div class="content" id="slide">
+			<div class="left">
+				<ul>
+					<li><a href="#">图片1</a></li>
+					<li><a href="#">图片2</a></li>
+					<li><a href="#">图片3</a></li>
+					<li><a href="#">图片4</a></li>
+					<li><a href="#">图片5</a></li>
+					<li><a href="#">图片6</a></li>
+				</ul>
+			</div>
+			<div class="min">
+				<img id="img" src="img/1.jpg">
+			</div>
+			<div class="right">
+				<ul>
+					<li><a href="#">图片7</a></li>
+					<li><a href="#">图片8</a></li>
+					<li><a href="#">图片9</a></li>
+					<li><a href="#">图片10</a></li>
+					<li><a href="#">图片11</a></li>
+					<li><a href="#">图片12</a></li>
+				</ul>
+			</div>
+		</div>
+	</body>
+</html>

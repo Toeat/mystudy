@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script>
+	window.onload = function(){
+		var oBtn1 = document.getElementById('btn1'),
+			oBtn2 = document.getElementById('btn2');
+			
+		oBtn2.onclick = function(){
+			
+			if(oBtn1.value.length == 0){
+				alert('输入为空');
+			}else if(isNaN(oBtn1.value)){
+				alert('不是数字');
+			}else if(oBtn1.value.charAt(0) == 0){
+				alert('第一个数字不能为零');
+			}else if(parseInt(oBtn1.value) != oBtn1.value){
+				alert('不能是小数');
+			}else if(oBtn1.value.length < 5){
+				alert('必须在长度5以上');
+			}else if(oBtn1.value.length > 10){
+				alert('必须在长度10以下');
+			}else{
+				alert('你终于输入正确了')
+			}
+			
+		}
+	}
+</script>
+</head>
+
+<body>
+
+请输入QQ号码：<input type="text"  id="btn1" />
+<input type="button" value="判断" id="btn2" />
+
+
+<br />
+1、有没有输入<br />
+2、输入的是不是数字<br />
+3、不能有0在前面<br />
+4、不能是小数<br />
+5、输入的数字必须在5位以上、10位以内<br />
+
+</body>
+</html>

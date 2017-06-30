@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style type="text/css">
+			div,ul,li,h2,h6,img,span,p{
+				padding:0;
+				margin:0;
+			}
+			
+			li{
+				list-style:none;
+			}
+			
+			a{
+				text-decoration: none;
+			}
+			
+			
+			.tab{
+				width:740px;
+				height:250px;
+				border:1px solid #000;
+			}
+			.top{
+				width:740px;
+				height:50px;
+			}
+			.top h2{
+				display:block;
+				float:left;
+				width:200px;
+				height:50px;
+				text-align:center;
+				line-height:50px;
+				
+			}
+			.top ul{
+				float:left;
+				width:400px;
+				height:50px;
+			}
+			
+			.top ul li{
+				width:58px;
+				height:48px;
+				float:left;
+				border:1px solid #000;
+				text-align:center;
+				line-height:50px;
+				background:lightblue;
+				margin-right:5px;
+			}
+			
+			.top .active{
+				background:#fff;
+			}
+			
+			.top .active a{
+				color:green;
+			}
+			
+			.bom{
+				width:740px;
+				height:200px;
+				position:relative;
+				overflow:hidden;
+			}
+			
+			.bom .left img{
+				float:left;
+				width:150px;
+				height:150px;
+				margin:15px;
+				border:5px solid #34ABFF;
+			}
+			
+			.bom .bom-tab{
+				width:550px;
+				height:204px;
+				overflow:hidden;
+				position:relative;
+			}
+			
+			.bom .tab1,.bom .tab2{
+				width:1650px;
+				height:170px;
+				position:absolute;
+				top:10px;
+				left:0;
+			}
+			
+			.bom .tab1 li,.bom .tab2 li{
+				float:left;
+				margin-right:7px;
+				width:176px;
+				height:170px;
+			}
+			
+			.bom .tab1 img,.bom .tab2 img{
+				width:150px;
+				height:100px;
+				margin:5px 10px;
+			}
+			
+			.bom .tab1 span,.bom .tab2 span{
+				font-size:5px;
+			}
+			
+			
+			.bom-b,.bom-b2{
+				width:100px;
+				height:30px;
+				position:absolute;
+				bottom:-5px;
+				left:200px;
+			}
+			
+			.bom-b img,.bom-b2 img{
+				width:21px;
+				height:21px;
+				float:left;
+			}
+			
+			.bom-b .list,.bom-b2 .list2{
+				float:left;
+				width:16px;
+				height:24px;
+				background:url(img/dli.png);
+			}
+			
+			.bom-b .list-active,.bom-b2 .list-active2{
+				float:left;
+				width:16px;
+				height:24px;
+				background:url(img/active.png);
+			}
+			
+			.bom-tab .hide{
+				display:none;
+			}
+			
+			.bom-tab .show{
+				display:block;
+			}
+			
+		</style>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../js/oWnJQ.js"></script>
+		<script>
+			window.onload = function(){
+				var oTab = document.getElementById('tab'),
+					oBom = document.getElementById('bom1'),
+					oUl1 = document.getElementsByTagName('ul')[0],
+					oUl2 = document.getElementsByTagName('ul')[1],
+					oUl3 = document.getElementsByTagName('ul')[3],
+					aBtn1 = oUl1.getElementsByTagName('li'),
+					oImg1 = oBom.getElementsByTagName('img')[0],
+					oDiv = oBom.getElementsByTagName('div')[1],
+					aDiv2 = oDiv.getElementsByTagName('div'),
+					aA = oDiv.getElementsByTagName('a'),
+					aImg1 = aA[0].getElementsByTagName('img'),
+					aImg2 = aA[1].getElementsByTagName('img'),
+					oAul1 = aA[0].getElementsByTagName('ul')[0],
+					oAul2 = aA[1].getElementsByTagName('ul')[0],
+					aLi1 = oAul1.getElementsByTagName('li'),
+					aLi2 = oAul2.getElementsByTagName('li'),
+					
+					num = 0,
+				
+					arrImg=['img/1.jpg','img/2.jpg'],
+					arrLeft = [0, -365, -730];
+				
+				for(var i = 0; i<aBtn1.length; i++){
+					aBtn1[i].index = i;
+					
+					aBtn1[i].onclick = function(){
+						for(var i = 0; i<aBtn1.length; i++){
+							aBtn1[i].className = '';
+							aDiv2[i].className = 'hide';
+						}
+						this.className = 'active';
+						aDiv2[this.index].className = 'show';
+						oImg1.src = arrImg[this.index];
+						num = 0;
+					}
+				}
+				
+				aImg1[0].onclick = function(){
+					reduce()
+					Move(oUl2, aLi1);
+				}
+				
+				aImg1[1].onclick = function(){			
+					add(aLi1)
+					Move(oUl2, aLi1);	
+				}
+				
+				aImg2[0].onclick = function(){
+					reduce();
+					Move(oUl3, aLi2);
+				}
+				
+				aImg2[1].onclick = function(){
+					add(aLi2);
+					Move(oUl3, aLi2)
+				}
+				
+				function reduce(){
+					num--;				
+					if(num === -1){
+						num = 0;
+					}
+				}
+				
+				function add(aLi){			
+					num++;				
+					if(num === aLi.length){
+						num = aLi.length-1;
+					}
+				}
+				
+				
+				function Move(ul, Li){
+					doMove(ul, 'left', 20, arrLeft[num]);
+					
+					for(var i = 0; i < Li.length; i++){
+						Li[i].className = 'list';
+					}
+					Li[num].className = 'list-active';
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="tab" class="tab">
+			<div class="top">
+				<h2>新鲜数码</h2>
+				<ul>
+					<li class="active"><a href="#">新品</a></li>
+					<li><a href="#">极客</a></li>
+				</ul>
+			</div>
+			<div id="bom1" class="bom">
+				<div class="left">
+					<img src="img/1.jpg">
+				</div>
+				<div class="bom-tab">
+					<div id="show" class="show">
+						
+						<ul class="tab1">
+							<li>
+								<img src="img/1.jpg">
+								<h6>AT&T新版本NexusS真机抢先1</h6>
+								<span>1白色版本Nexus S是专门适配与AT&T的3G网咯制式...</span>
+							</li>
+							<li>
+								<img src="img/2.jpg">
+								<h6>AT&T新版本NexusS真机抢先2</h6>
+								<span>2白色版本Nexus S是专门适配与AT&T的3G网咯制式...</span>
+							</li>
+							<li>
+								<img src="img/3.jpg">
+								<h6>AT&T新版本NexusS真机抢先3</h6>
+								<span>3白色版本Nexus S是专门适配与AT&T的3G网咯制式...</span>
+							</li>
+							<li>
+								<img src="img/4.jpg">
+								<h6>AT&T新版本NexusS真机抢先4</h6>
+								<span>4白色版本Nexus S是专门适配与AT&T的3G网咯制式...</span>
+							</li>
+							<li>
+								<img src="img/5.jpg">
+								<h6>AT&T新版本NexusS真机抢先5</h6>
+								<span>5白色版本Nexus S是专门适配与AT&T的3G网咯制式...</span>
+							</li>
+							<li>
+								<img src="img/6.jpg">
+								<h6>AT&T新版本NexusS真机抢先6</h6>
+								<span>6白色版本Nexus S是专门适配与AT&T的3G网咯制式...</span>
+							</li>
+							<li>
+								<img src="img/7.jpg">
+								<h6>AT&T新版本NexusS真机抢先7</h6>
+								<span>7白色版本Nexus S是专门适配与AT&T的3G网咯制式...</span>
+							</li>
+							<li>
+								<img src="img/8.jpg">
+								<h6>AT&T新版本NexusS真机抢先8</h6>
+								<span>8白色版本Nexus S是专门适配与AT&T的3G网咯制式...</span>
+							</li>
+							<li>
+								<img src="img/9.jpg">
+								<h6>AT&T新版本NexusS真机抢先9</h6>
+								<span>9白色版本Nexus S是专门适配与AT&T的3G网咯制式...</span>
+							</li>
+						</ul>
+						
+						<a class="bom-b">
+							<img src="img/l.png">
+							<ul>
+								<li class="list-active"></li>
+								<li class="list"></li>
+								<li class="list"></li>
+							</ul>
+							<img src="img/r.png">
+						</a>
+					</div>
+					<div id="hide" class="hide">
+						<ul class="tab1">
+							<li>
+								<img src="img/1.jpg">
+								<h6>AT&T新版本NexusS真机抢先1</h6>
+								<span>1白色版本Nexus S是专门适配与AT&T的3G网咯制式...</span>
+							</li>
+							<li>
+								<img src="img/2.jpg">
+								<h6>AT&T新版本NexusS真机抢先2</h6>
+								<span>2白色版本Nexus S是专门适配与AT&T的3G网咯制式...</span>
+							</li>
+							<li>
+								<img src="img/3.jpg">
+								<h6>AT&T新版本NexusS真机抢先3</h6>
+								<span>3白色版本Nexus S是专门适配与AT&T的3G网咯制式...</span>
+							</li>
+							<li>
+								<img src="img/4.jpg">
+								<h6>AT&T新版本NexusS真机抢先4</h6>
+								<span>4白色版本Nexus S是专门适配与AT&T的3G网咯制式...</span>
+							</li>
+							<li>
+								<img src="img/5.jpg">
+								<h6>AT&T新版本NexusS真机抢先5</h6>
+								<span>5白色版本Nexus S是专门适配与AT&T的3G网咯制式...</span>
+							</li>
+							<li>
+								<img src="img/6.jpg">
+								<h6>AT&T新版本NexusS真机抢先6</h6>
+								<span>6白色版本Nexus S是专门适配与AT&T的3G网咯制式...</span>
+							</li>
+						</ul>
+						
+						<a class="bom-b">
+							<img src="img/l.png">
+							<ul>
+								<li class="list-active"></li>
+								<li class="list"></li>
+							</ul>
+							<img src="img/r.png">
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

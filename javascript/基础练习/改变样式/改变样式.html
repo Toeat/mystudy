@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style type="text/css">
+			.mask{	
+			   position: fixed;
+			   top: 0px;
+			   left: 0px;
+			   right:0px;
+			   bottom:0px;
+			   background-color:#DFDFDF;
+			   -moz-opacity: 0.8;
+			   opacity:0.7;
+			   z-index:1001;
+			   filter: alpha(opacity=90);
+			   display:none;
+			}
+			
+			.div1{
+				width:600px;
+				height:600px;
+				border:4px solid #288BFF;
+				margin:200px auto;
+				position:relative;
+			}
+			
+			.span1{
+				display:block;
+				width:200px;
+				height:40px;
+				text-align:center;
+				font-size:30px;
+				line-height:40px;
+				border:2px solid red;
+				margin:20px auto;
+			}
+			
+			.div2{
+				width:200px;
+				height:200px;
+				border:2px solid black;
+				margin:50px auto;
+			}
+			
+			.mask .div3{
+				width:300px;
+				height:300px;
+				background:white;
+				border:20px solid #222222;
+				position:absolute;
+				top:200px;
+				left:61%;
+			}
+			
+			.mask .div4{
+				height:70px;
+				margin-top:10px;
+				margin-left:10px;
+			}
+			
+			.mask .div5{
+				margin-left:45%;
+			}
+			
+			
+			.mask .div4 .btn1{
+				width:40px;
+				height:40px;
+				background:red;
+			}
+			.mask .div4 .btn2{
+				width:40px;
+				height:40px;
+				background:orange;
+			}
+			.mask .div4 .btn3{
+				width:40px;
+				height:40px;
+				background:blue;
+			}
+			.mask .div4 .btn4{
+				width:40px;
+				height:40px;
+				background:#CCC;
+			}
+			.mask .div5 .btn5{
+				width:60px;
+				height:40px;
+				background:#191970;
+			}
+		</style>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		<script type="text/javascript">
+			window.onload = function(){
+				var oSpan = document.getElementById('span1'),
+					oMask = document.getElementById('mask'),
+					oDiv2 = document.getElementById('div2'),
+					oBtn1 =document.getElementById('btn1'),
+					oBtn2 =document.getElementById('btn2'),
+					oBtn3 =document.getElementById('btn3'),
+					oBtn4 =document.getElementById('btn4'),
+					oBtn5 =document.getElementById('btn5'),
+					oBtn6 =document.getElementById('btn6'),
+					oBtn7 =document.getElementById('btn7'),
+					oBtn8 =document.getElementById('btn8'),
+					oBtn9 =document.getElementById('btn9'),
+					oBtn10 =document.getElementById('btn10'),
+					oBtn11 =document.getElementById('btn11');
+					
+				oSpan.onclick = function(){
+					oMask.style.display = 'block';
+					
+					oBtn1.onclick = function(){
+						oDiv2.style.background = 'red';
+					}				
+					oBtn2.onclick = function(){
+						oDiv2.style.background = 'orange';
+					}
+					oBtn3.onclick = function(){
+						oDiv2.style.background = 'blue';
+					}
+					oBtn4.onclick = function(){
+						oDiv2.style.height = '200px';
+					}
+					oBtn5.onclick = function(){
+						oDiv2.style.height = '300px';
+					}
+					oBtn6.onclick = function(){
+						oDiv2.style.height = '400px';
+					}
+					oBtn7.onclick = function(){
+						oDiv2.style.width = '200px';
+					}
+					oBtn8.onclick = function(){
+						oDiv2.style.width = '300px';
+					}
+					oBtn9.onclick = function(){
+						oDiv2.style.width = '400px';
+					}
+					oBtn10.onclick = function(){
+						oDiv2.style.width = '200px';
+						oDiv2.style.height = '200px';
+						oDiv2.style.background = '';
+					}
+					oBtn11.onclick = function(){
+						oMask.style.display = 'none';
+					}
+				}
+			}
+		</script>
+		
+	</head>
+	<body>
+		<div class="div1">
+			<span id="span1" class="span1">点我设置样式</span>
+			<div id="div2" class="div2"></div>
+			<div id="mask" class="mask">
+				<div class="div3">
+					<div class="div4">
+						<strong>请选择背景颜色：</strong>
+						<input id="btn1" class="btn1" type="button" value="红">
+						<input id="btn2" class="btn2" type="button" value="黄">
+						<input id="btn3" class="btn3" type="button" value="蓝">
+					</div>
+					<div class="div4">
+						<strong>请选择高(px)：</strong>
+						<input id="btn4" class="btn4" type="button" value="200">
+						<input id="btn5" class="btn4" type="button" value="300">
+						<input id="btn6" class="btn4" type="button" value="400">
+					</div>
+					<div class="div4">
+						<strong>请选择宽(px)：</strong>
+						<input id="btn7" class="btn4" type="button" value="200">
+						<input id="btn8" class="btn4" type="button" value="300">
+						<input id="btn9" class="btn4" type="button" value="400">
+					</div>
+					<div class="div5">
+						<input id="btn10" class="btn5" type="button" value="恢复">
+						<input id="btn11" class="btn5" type="button" value="确定">
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

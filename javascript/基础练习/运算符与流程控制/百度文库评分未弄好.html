@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			li{
+				list-style: none;
+			}
+			
+			ul{
+				padding:0;
+				margin:0;
+				float:left;
+			}
+			
+			p{
+				height:30px;
+				width:35px;
+				float:left;
+			}
+			ul .bright{
+				width:20px;
+				height:40px;
+				background:url(img/1.png) no-repeat;
+				float:left;
+				margin-top:19px;
+			}
+			
+			ul .dark{
+				width:20px;
+				height:40px;
+				background:url(img/1.png) no-repeat -130px;
+				float:left;
+				margin-top:5px;
+			}
+			
+			ul .ash{
+				width:20px;
+				height:40px;
+				background:url(img/1.png) no-repeat -99px;
+				float:left;
+				margin-top:5px;
+			}
+			
+			span{
+				height:50px;
+				width:35px;
+				color:orangered;
+				line-height:50px;
+			}
+		</style>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		<script>
+			window.onload = function(){
+				var oUl = document.getElementsByTagName('ul')[0];
+				var aLi = document.getElementsByTagName('li');
+				var oSpan = document.getElementsByTagName('span')[0];
+				var arr = ['很差','较差','一般','推荐','力荐']
+				var num = 0;
+				
+				oUl.onmouseout = function (){
+					for(var i = 0; i < aLi.length; i++){
+						aLi[i].className = 'dark';
+					}
+					
+					oSpan.innerHTML = '点击星星进行打分';
+				}
+				
+				for(var i = 0; i < aLi.length; i++){
+					aLi[i].index = i;
+					
+					aLi[i].onmousemove = function (){
+						for(var j = 0; j < this.index+1; j++){
+							if(j < 2){
+								aLi[j].className = 'ash';
+							}else{
+								for(var x = 0; x < this.index+1; x++){
+									aLi[x].className = 'bright';
+								}
+							}
+							
+							oSpan.innerHTML = arr[this.index];
+						}
+					}
+					
+					aLi[i].onmouseout = function (){
+						this.className = 'dark';
+					}
+					
+					aLi[i].onclick = function (){
+						for(var j = 0; j < this.index+1; j++){
+							aLi[j].className = 'bright';
+						}
+						oUl.onmouseout = '';
+						this.onmouseout = '';
+					}
+				}
+			}
+			
+		</script>
+		
+	</head>
+	<body>
+		<div>
+			<p>评分</p>
+			<ul>
+				<li class="dark"></li>
+				<li class="dark"></li>
+				<li class="dark"></li>
+				<li class="dark"></li>
+				<li class="dark"></li>
+			</ul>
+			<span>点击星星进行打分</span>
+		</div>
+	</body>
+</html>

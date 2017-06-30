@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style type="text/css">
+			ul{
+				margin:0;
+				padding:0;
+			}
+		
+			li{
+				list-style:none;
+			}
+			
+			#tab{
+				width:320px;
+				height:152px;
+			}
+			
+			.nav{
+				width:300px;
+				height:30px;
+			}
+			
+			.nav li{
+				float:left;
+				width:80px;
+				height:30px;
+				background:#0099FF;	
+				margin-right:1px;
+				text-align:center;
+				line-height:30px;
+				color:#fff;
+			}
+			
+			.nav .active{
+				background:#0000FF;
+			}
+			
+			.box{
+				width:320px;
+				height:120px;
+				display:none;
+			}
+			
+			.box img{
+				width:220px;
+				height:122px;
+				float:left;
+			}
+			
+			.box ul{
+				width:80px;
+				height:122px;
+				float:left;
+			}
+			
+			.box ul li{
+				width:100px;
+				height:40px;
+				background:#B7B7B7;
+				margin-bottom:1px;
+				text-align:center;
+				line-height:39px;
+			}
+			
+			.box .active{
+				color:#fff;
+				background:#1E90FF;
+			}
+		</style>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			window.onload = function(){
+				var oTab = document.getElementById('tab');
+				var aDiv = oTab.getElementsByTagName('div');
+				var oUl =oTab.getElementsByTagName('ul')[0];
+				var aBtn = oUl.getElementsByTagName('li');
+				
+				var timer = null;
+				var arr = [
+					['img/1.jpg','img/2.jpg','img/3.jpg'],
+					['img/4.jpg','img/5.jpg','img/6.jpg']
+				]
+				
+				var iNow = 0;
+				var num = 0;
+				
+				aDiv[iNow].style.display = 'block';
+				
+				timer = setInterval(function(){
+					num++;
+					
+					if(num === aDiv[iNow].getElementsByTagName('li').length){
+						num = 0;
+						if(iNow == 0){
+							iNow = 1;
+							
+						}else{
+							iNow = 0;
+						}
+					}
+					
+					
+					for(var i = 0; i < aBtn.length; i++){
+						aDiv[i].style.display = 'none';
+						aBtn[i].className = '';
+					}
+					
+					aDiv[iNow].style.display = 'block';
+					aBtn[iNow].className = 'active';
+					
+					fntab(num, iNow);
+					
+				},1000)
+				
+				function fntab(n, index){
+					var aLi = aDiv[index].getElementsByTagName('li');
+					var oImg = aDiv[index].getElementsByTagName('img')[0];
+					
+					for(var i = 0; i < aLi.length; i++){
+						aLi[i].className = '';
+					}
+					
+					aLi[n].className = 'active';
+					oImg.src = arr[index][n];
+					
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="tab">
+			<ul class="nav">
+				<li class="active">菜单一</li>
+				<li>菜单二</li>
+			</ul>
+			<div class="box">
+				<img src="img/1.jpg">
+				<ul>
+					<li class="active">图片1</li>
+					<li>图片2</li>
+					<li>图片3</li>
+				</ul>
+			</div>
+			<div class="box">
+				<img src="img/5.jpg">
+				<ul>
+					<li class="active">图片1</li>
+					<li>图片2</li>
+					<li>图片3</li>
+				</ul>
+			</div>
+		</div>
+	</body>
+</html>

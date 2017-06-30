@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			#content{
+				width:300px;
+				height:500px;
+				border:10px solid #ccc;
+				position:relative;
+				margin:30px auto 0;
+				background:#ECFAFF;
+			}
+			#content a{
+				width:40px;
+				height:40px;
+				background:#000;
+				border:5px solid #fff;
+				position:absolute;
+				top:225px;
+				text-align:center;
+				text-decoration: none;
+				line-height:40px;
+				color:#fff;
+				font-size:40px;
+				font-weight: bold;
+				filter:alpha(opacity=40);
+				opacity:0.4;
+			}
+			#content a:hover{
+				filter:alpha(opacity=90);
+				opacity:0.9;
+			}
+			#prev{
+				left:10px;
+			}
+			#next{
+				right:10px;
+			}
+			
+			#text,#span1{
+				position:absolute;
+				left:0;
+				width:300px;
+				height:30px;
+				background:#000;
+				text-align:center;
+				line-height:30px;
+				color:#fff;
+				filter:alpha(opacity=90);
+				opacity:0.9;
+				
+			}
+			
+			#text{
+				bottom:0;
+				margin:0;
+			}
+			#span1{
+				top:0;
+			}
+			#img1{
+				width:300px;
+				height:500px;
+			}
+			
+			#tabbtn{
+				width:320px;
+				height:30px;
+				margin:5px auto 0px;
+				position:relative;
+			}
+			#tabbtn #tab1{
+				margin-left:90px;
+			}
+			#p1{
+				width:320px;
+				line-height:10px;
+				margin-left:115px;
+			}
+		</style>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			window.onload=function(){
+				var oPrve = document.getElementById('prev'),
+					oNext = document.getElementById('next'),
+					oTab1 = document.getElementById('tab1'),
+					oTab2 = document.getElementById('tab2'),
+					oP = document.getElementById('p1'),
+					oText = document.getElementById('text'),
+					oSpan = document.getElementById('span1'),
+					oImg = document.getElementById('img1'),
+					arrUrl = ['img/1.jpg','img/2.jpg','img/3.jpg'],
+					arrText = ['王乔恩1','王乔恩2','王乔恩3'],
+					arrBtn = ['可循环切换','不可循环播放'],
+					num = 0;
+					
+				//初始化
+				function fnTab(){
+					oText.innerHTML = arrText[num];
+					oSpan.innerHTML = num+1+'/'+arrText.length;
+					oImg.src = arrUrl[num];
+				}
+				fnTab();
+				
+				function btnTab(){
+					oPrve.onclick = function(){
+							num--;
+							if(num == -1){
+								num = arrText.length-1;
+							}
+							
+							fnTab()
+						};
+						
+						oNext.onclick = function(){
+							num++;
+							if(num == arrText.length){
+								num = 0;
+							}
+							fnTab()
+					};
+				}
+				btnTab();
+				
+				//点击时
+				oP.innerHTML= arrBtn[0];
+				
+				oTab1.onclick =function(){
+					oP.innerHTML= arrBtn[0];
+					btnTab()
+				}
+				
+				oTab2.onclick =function(){
+					oP.innerHTML= arrBtn[1];
+					oPrve.onclick = function(){
+						num--;
+						if(num == -1){
+							num = 0;
+						}
+						
+						fnTab()
+					};
+					
+					oNext.onclick = function(){
+						num++;
+						if(num == arrText.length){
+							num = arrText.length-1;
+						}
+						fnTab()
+					};
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="tabbtn">
+			<input id="tab1" type="button" value="循环切换">
+			<input id="tab2" type="button" value="顺序切换">
+			<p id="p1">文字加载中<p>
+		</div>
+		<div id="content">
+			<a id="prev" href="javascript:;">&lt;</a>
+			<a id="next" href="javascript:;">&gt;</a>
+			<p id="text">图片文字加载...</p>
+			<span id="span1">数量加载...</span>
+			<img id="img1">
+		</div>
+	</body>
+</html>

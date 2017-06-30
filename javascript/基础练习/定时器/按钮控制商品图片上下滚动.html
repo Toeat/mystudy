@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			ul{
+				margin:0;
+				padding:0;
+			}
+			li{
+				list-style:none;
+				width:150px;
+				height:80px;
+				border-bottom:1px dashed #999;
+			}
+			div{
+				float:left;
+				margin-left:10px;
+			}
+			img{
+				float:right;
+				width:50px;
+				height:50px;
+				margin-top:17px;
+				margin-right:5px;
+			}
+			
+			a{
+				display:block;
+				text-decoration:none;
+				position:absolute;
+				height:30px;
+				width:150px;
+				background:#333;
+				line-height:30px;
+				text-align:center;
+				color:#fff;
+			}
+			
+			
+			ul{
+				position:absolute;
+				width:150px;
+				height:324px;
+				padding-top:30px;
+				top:0;
+				z-index: 1;
+			}
+			
+			#content{
+				position:relative;
+				width:150px;
+				height:384px;
+				overflow:hidden;
+			}
+			#up{
+				top:0;
+				left:0;
+				z-index: 2;
+				margin-bottom: 30px;
+			}
+			#down{
+				bottom:0;
+				left:0;
+				z-index: 2;
+			}
+		</style>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			window.onload = function(){
+				var oUp	  = document.getElementById('up'),
+				 	oDown = document.getElementById('down'),
+				 	oUl   = document.getElementById('ul1'),
+				 	oContent = document.getElementById('content'),
+				 	timer = null,
+				 	num   = 0;
+				 	
+				 	
+				oUp.onmousedown = function(){
+					timer = setInterval(function(){
+						if(oUl.offsetTop >= 0){
+							clear();
+						}else{
+							oUl.style.top = oUl.offsetTop + 3 +'px';
+						}						
+					},30)
+				}
+				
+				oUp.onmouseup = clear;
+				
+				oDown.onmousedown = function(){
+					timer = setInterval(function(){
+						if(oUl.offsetTop <= -324){
+							clear();
+						}else{
+							oUl.style.top = oUl.offsetTop - 3 +'px';
+						}						
+					},30)
+				}
+
+				oDown.onmouseup = clear;
+				
+				function clear(){
+					clearInterval(timer);
+				};
+			}
+		</script>
+	</head>
+	<body>
+		<div id="content">
+			<a id="up" href="#">UP</a>
+			<a id="down" href="#">DOWN</a>
+			<ul id="ul1">
+				<li>
+					<div>
+						<p>无线网络1</p>
+						<span>2:40</span>
+					</div>
+					<img src="img/1.jpg">
+				</li>
+				<li>
+					<div>
+						<p>无线网络2</p>
+						<span>2:40</span>
+					</div>
+					<img src="img/1.jpg">
+				</li>
+				<li>
+					<div>
+						<p>无线网络3</p>
+						<span>2:40</span>
+					</div>
+					<img src="img/1.jpg">
+				</li>
+				<li>
+					<div>
+						<p>无线网络4</p>
+						<span>2:40</span>
+					</div>
+					<img src="img/1.jpg">
+				</li>
+				<li>
+					<div>
+						<p>无线网络5</p>
+						<span>2:40</span>
+					</div>
+					<img src="img/1.jpg">
+				</li>
+				<li>
+					<div>
+						<p>无线网络6</p>
+						<span>2:40</span>
+					</div>
+					<img src="img/1.jpg">
+				</li>
+				<li>
+					<div>
+						<p>无线网络7</p>
+						<span>2:40</span>
+					</div>
+					<img src="img/1.jpg">
+				</li>
+				<li>
+					<div>
+						<p>无线网络8</p>
+						<span>2:40</span>
+					</div>
+					<img src="img/1.jpg">
+				</li>
+			</ul>
+		</div>
+	</body>
+</html>

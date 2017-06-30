@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style type="text/css">
+			li{
+				list-style:none;
+			}
+			
+			.active{
+				background:#C5C5C5;
+			}
+		</style>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			window.onload = function (){
+				var aLi = document.getElementsByTagName('li');
+				var aBtn = document.getElementsByTagName('input');
+				var onOff = true;
+				
+				for(var i = 0; i<aLi.length-1; i++){
+					
+					aLi[i].index = i;
+					aBtn[i].index = i;
+					
+					aLi[i].onmousemove = function(){
+						this.className = 'active';
+					}
+					
+					aLi[i].onmouseout = function(){
+						if(aBtn[this.index].checked)
+						{
+							this.className = 'active';
+						}else{
+							this.className = '';
+						}
+					}
+					
+					aBtn[i].onclick = function(){
+						this.className = 'active';
+					}
+				}
+				
+				aBtn[aBtn.length-1].onclick = function(){
+					if(onOff){
+						onOff = false;
+						for(var i = 0; i<aLi.length-1; i++){
+							aLi[i].className = 'active';
+							aBtn[i].checked = true;
+						}
+					}else{
+						onOff = true;
+						for(var i = 0; i<aLi.length-1; i++){
+							aLi[i].className = '';
+							aBtn[i].checked = false;
+						}
+					}
+				}
+				
+			}
+				
+		</script>
+	</head>
+	<body>
+		<div>
+			<ul>
+				<li><input type="checkbox"><span>打虎上山</span></li>
+				<li><input type="checkbox"><span>一帘幽梦</span></li>
+				<li><input type="checkbox"><span>每次都想呼唤你的名字</span></li>
+				<li><input type="checkbox"><span>平凡之路</span></li>
+				<li><input type="checkbox"><span>山丘</span></li>
+				<li><input type="checkbox"><span>给自己的歌</span></li>
+				<li id="select"><input type="checkbox"><span>全选</span></li>
+			</ul>
+		</div>
+	</body>
+</html>

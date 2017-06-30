@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style type="text/css">
+			ul{
+				list-style:none;
+				padding:0;
+				margin:0;
+			}
+			a{
+				text-decoration: none;
+			}
+			
+			.lis{
+				width:80px;
+				height:30px;
+				border:1px solid #000;
+				line-height:30px;
+				text-align:center;
+				background:#FFB442;
+				position:relative;
+			}
+			
+			.lis a{
+				display:block;
+				color:#333;
+			}
+			
+			.lis ul{
+				width:140px;
+				background:#333;
+				border:1px solid #000;
+				position:absolute;
+				top:30px;
+				left:-1px;
+				display:none;
+			}
+		</style>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<ul>
+			<li id="lis" class="lis">
+				<a id="link" href="#">@微博</a>
+				<ul id="ul1">
+					<li>哈哈</li>
+					<li>哈哈</li>
+					<li>哈哈</li>
+				</ul>
+			</li>
+		</ul>
+	</body>
+	<script type="text/javascript">
+			var oLink = document.getElementById('lis'),
+				oUl = document.getElementById('ul1');
+			oLink.onmouseover = function show(){
+				oUl.style.display = 'block';
+				oLink.style.background = '#D94B01';
+			}
+			oLink.onmouseout = function hide(){
+				oLink.style.background = '#FFB442';
+				oUl.style.display = 'none';
+			}
+		</script>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<style type="text/css">
+			ul,div{
+				margin:0;
+				padding:0;
+			}
+			
+		
+			.title-btn{
+				width:210px;
+				height:50px;
+				border:2px solid #000;
+			}
+			
+			.title-btn a{
+				display:block;
+				width:50px;
+				height:50px;
+				float:left;
+				line-height:50px;
+				padding-left:18px;
+				font-size:18px;
+			}
+			.active-a{
+				color: red;
+				font-weight:bold;
+			}
+			
+			.btn{
+				border-left:2px solid #000;
+			}
+			
+			.ul1 li{
+				width:210px;
+				border-bottom:1px dashed #B3B3B3;
+			}
+			
+			.show{
+				display:block;
+			}
+			
+			.hide{
+				display:none;
+			}
+			
+			/*选中div*/
+			.div-active{
+				width:210px;
+				height:60px;
+				padding:5px;
+			}
+			
+			.num{
+				font-size:20px;
+				font-weight:bold;
+				line-height:50px;
+				display:block;
+				float:left;
+				margin:0 5px;
+			}
+			
+			.img{
+				display:block;
+				width:60px;
+				height:60px;
+				float:left;
+				margin-left:20px;
+			}
+			
+			.div-active input{
+				width:50px;
+				height:30px;
+				margin-top:15px;
+				margin-left:50px;
+			}
+			
+			
+			/*隐藏div*/
+			.div-hide{
+				width:210px;
+				height:30px;
+				padding:5px;
+			}
+			
+			.hide-num{
+				font-size:20px;
+				font-weight:bold;
+				line-height:30px;
+			}
+			
+			.div-a{
+				font-size:15px;
+				line-height:30px;
+			}
+		</style>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>无标题文档</title>
+		<script>
+			window.onload = function(){
+				var oUl = document.getElementById('ul1');
+				var aLi = oUl.getElementsByTagName('li');
+				
+				oUl.onmousemove = function(){ 
+					
+					for(var i = 0; i < aLi.length; i++) {
+						
+						if(i>0){	
+							
+							aLi[i].onmousemove = show;  //显示
+							aLi[i].onmouseout = hide;	//隐藏
+							
+						}else{
+							
+							aLi[i].onmouseout = hide;	//隐藏
+							aLi[i].onmousemove = show;	//显示
+
+						}
+					}
+				}
+				oUl.onmouseout = function() {
+					/**/
+				}
+				
+				function show(){
+					var oDiv = this.getElementsByTagName('div'); //选中所有div
+					oDiv[0].style.display = 'block';	//第一个div显示
+					oDiv[1].style.display = 'none';		//第二个div隐藏
+				}
+				
+				function hide() {
+					var oDiv = this.getElementsByTagName('div'); //选中所有div
+					oDiv[0].style.display = 'none';		//第一个div隐藏
+					oDiv[1].style.display = 'block';	//第二个div显示
+				}
+
+			}
+		</script>
+	</head>
+
+	<body>
+		<div>
+			<div class="title-btn">
+				<a class="active-a">每日</a>
+				<a class="btn">每周</a>	
+				<a class="btn">每月</a>	
+			</div>
+			<div>
+			<ul id="ul1" class="ul1">
+				<li>
+					<div class="div-active show">
+						<span class="num">1</span>
+						<img class="img" src="../../../css学习/从psd设计图到HTML模版/images/app-icon.png">
+						<input type="button" value="播放">
+					</div>
+					<div class="div-hide hide">
+						<span class="hide-num">1</span>
+						<a class="div-a">文字文字文字文字文字文</a>
+					</div>
+				</li>
+				<li>
+					<div class="div-active hide">
+						<span class="num">2</span>
+						<img class="img" src="../../../css学习/从psd设计图到HTML模版/images/app-icon.png">
+						<input type="button" value="播放">
+					</div>
+					<div class="div-hide show">
+						<span class="hide-num">2</span>
+						<a class="div-a">文字文字文字文字文字文</a>
+					</div>
+				</li>
+				<li>
+					<div class="div-active hide">
+						<span class="num">3</span>
+						<img class="img" src="../../../css学习/从psd设计图到HTML模版/images/app-icon.png">
+						<input type="button" value="播放">
+					</div>
+					<div class="div-hide show">
+						<span class="hide-num">3</span>
+						<a class="div-a">文字文字文字文字文字文</a>
+					</div>
+				</li>
+				<li>
+					<div class="div-active hide">
+						<span class="num">4</span>
+						<img class="img" src="../../../css学习/从psd设计图到HTML模版/images/app-icon.png">
+						<input type="button" value="播放">
+					</div>
+					<div class="div-hide show">
+						<span class="hide-num">4</span>
+						<a class="div-a">文字文字文字文字文字文</a>
+					</div>
+				</li>
+				<li>
+					<div class="div-active hide">
+						<span class="num">5</span>
+						<img class="img" src="../../../css学习/从psd设计图到HTML模版/images/app-icon.png">
+						<input type="button" value="播放">
+					</div>
+					<div class="div-hide show">
+						<span class="hide-num">5</span>
+						<a class="div-a">文字文字文字文字文字文</a>
+					</div>
+				</li>
+				<li>
+					<div class="div-active hide">
+						<span class="num">6</span>
+						<img class="img" src="../../../css学习/从psd设计图到HTML模版/images/app-icon.png">
+						<input type="button" value="播放">
+					</div>
+					<div class="div-hide show">
+						<span class="hide-num">6</span>
+						<a class="div-a">文字文字文字文字文字文</a>
+					</div>
+				</li>
+				<li>
+					<div class="div-active hide">
+						<span class="num">7</span>
+						<img class="img" src="../../../css学习/从psd设计图到HTML模版/images/app-icon.png">
+						<input type="button" value="播放">
+					</div>
+					<div class="div-hide show">
+						<span class="hide-num">7</span>
+						<a class="div-a">文字文字文字文字文字文</a>
+					</div>
+				</li>
+				<li>
+					<div class="div-active hide">
+						<span class="num">8</span>
+						<img class="img" src="../../../css学习/从psd设计图到HTML模版/images/app-icon.png">
+						<input type="button" value="播放">
+					</div>
+					<div class="div-hide show">
+						<span class="hide-num">8</span>
+						<a class="div-a">文字文字文字文字文字文</a>
+					</div>
+				</li>
+			</ul>
+			</div>
+		</div>
+	</body>
+
+</html>
