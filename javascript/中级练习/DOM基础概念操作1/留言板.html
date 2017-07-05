@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			window.onload = function(){
+				var oTxt = document.getElementById('txt1');
+				var oBtn = document.getElementById('btn1');
+				var oBtn2 = document.getElementById('btn2');
+				var oUl = document.getElementById('ul1');
+				
+				oBtn.onclick = function(){
+					
+					var aLi = document.getElementsByTagName('li');
+					
+					var oLi = document.createElement('li');
+					var oDel = document.createElement('input');
+					
+					
+					oDel.type = 'button';
+					oDel.value = '删除';
+					oDel.onclick = function(){
+						oUl.removeChild( this.parentNode );
+					}
+					
+					oLi.innerHTML = oTxt.value; 
+					oLi.onOff = true;
+					oLi.appendChild(oDel);
+					oLi.onclick = function(){
+						if(oLi.onOff){
+							oLi.style.background = 'red';
+							oLi.onOff = false;
+						}else{
+							oLi.style.background = '';
+							oLi.onOff = true;
+						}
+					}
+					
+					if(oTxt.value == ''){
+						
+						alert('不能为空');
+						
+					}else{
+						
+						if(aLi.length == 5){
+							oUl.removeChild(aLi[aLi.length-1]);
+						}
+							
+						if(oUl.children[0]){
+							oUl.insertBefore(oLi, oUl.children[0]);
+						}else{
+							oUl.appendChild(oLi);
+						}
+							
+						oTxt.value = '';
+						
+						
+					}
+					
+					oBtn2.onclick = function(){
+						
+						var arr= [];
+						
+						for(var i = 0; i<aLi.length; i++){
+														
+							if(!aLi[i].onOff){
+								arr.push(aLi[i]);
+							}
+							
+						}
+						
+						for(var i = 0; i<arr.length; i++){
+														
+							oUl.removeChild(arr[i]);
+							
+						}
+						
+					}
+					
+					
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<input id="txt1" type="text">
+		<input type="button" id="btn1" value="创建">
+		<input type="button" id="btn2" value="批量删除">
+		<ul id="ul1">
+			
+		</ul>
+	</body>
+</html>
