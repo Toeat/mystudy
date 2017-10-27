@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>回到顶部练习</title>
+	</head>
+	<style type="text/css">
+		body{
+			margin:0;
+			padding:0;
+			height:3000px;
+			position:relative;			
+		}
+		
+		div{
+			display:none;
+			position:absolute;
+			
+			right:0;
+			width:50px;
+			height:50px;
+			background:orange;		
+		}
+		
+		div:active{
+			background:orangered;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload = function(){
+			var oD = document.getElementsByClassName('div1')[0];
+			var clientHeight = document.documentElement.clientHeight||document.body.clientHeight;
+			
+			window.onresize =function(){
+				clientHeight = document.documentElement.clientHeight||document.body.clientHeight;
+				scroll();
+			}
+			
+			window.onscroll = function(){
+				scroll();
+			}
+			
+			function scroll(){				
+				var scrollTop = document.documentElement.scrollTop||document.body.scrollTop;
+				var timer = null;
+				
+				if(scrollTop>300){
+					oD.style.display = 'block';
+					oD.style.top = (scrollTop+clientHeight-oD.offsetHeight)+'px';
+				}
+				
+				oD.onclick = function(){
+					oD.style.display = 'none';
+					
+					timer = setInterval(function(){
+						if(scrollTop>0){
+							scrollTop-=50;
+							document.documentElement.scrollTop = document.body.scrollTop = scrollTop;
+						}else if(scrollTop<=0){
+							scrollTop = 0;
+							clearInterval(timer);
+						}
+					},10);
+				}
+				
+				document.title = scrollTop;
+			}
+		}
+	</script>
+	<body>
+		<div class="div1">
+			
+		</div>
+	</body>
+</html>

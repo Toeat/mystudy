@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style type="text/css">
+		dd{
+			padding:5px 0;
+		}
+		span{
+			padding:0 10px;
+		}
+	</style>
+	<script type="text/javascript">
+//		window.onload = function(){
+//			var aDd = document.getElementsByTagName('dd');
+//			var oDiv =document.getElementById('div1');
+//			var aSpan = document.getElementsByTagName('span');
+//			var onOFF = 0;
+//			var oWz = 0;
+//			console.log(aDd);
+//			
+//			function fnwz(num){
+//				for(var j = 0; j < aDd.length ;j++){
+//					aDd[j].index = j;
+//					if(aDd[j].innerHTML == aSpan[num].innerHTML){
+//						oWz = aDd[j].index;
+//					};
+//				}
+//			}
+//			
+//			for(var i = 0; i < aDd.length ;i++){	
+//				aDd[i].index = i;				
+//				if(i<3){
+//					aDd[i].onmousedown = function(){
+//						var oSpan = document.createElement('span');
+//						oSpan.innerHTML = this.innerHTML;
+//						if(aSpan.length === 0){
+//							oDiv.appendChild(oSpan);
+//						}else if(aSpan.length === 1){
+//							fnwz(0);
+//							if(oWz<3&&oWz>=0){
+//								oDiv.replaceChild(oSpan,oDiv.childNodes[0]);
+//							}else{
+//								oDiv.insertBefore(oSpan,oDiv.childNodes[0]);
+//							}
+//						}else if(aSpan.length === 2){
+//							fnwz(0);
+//							if(oWz<3&&oWz>=0){
+//								oDiv.replaceChild(oSpan,oDiv.childNodes[0]);
+//							}else{
+//								oDiv.insertBefore(oSpan,oDiv.childNodes[0]);
+//							}
+//						}else{
+//							fnwz(0);
+//							if(oWz<3&&oWz>=0){
+//								oDiv.replaceChild(oSpan,oDiv.childNodes[0]);
+//							}else{
+//								oDiv.insertBefore(oSpan,oDiv.childNodes[0]);
+//							}
+//						}
+//					}
+//				}else if(i<6){
+//					aDd[i].onmousedown = function(){
+//						var oSpan = document.createElement('span');
+//						oSpan.innerHTML = this.innerHTML;
+//						if(aSpan.length === 0){
+//							oDiv.appendChild(oSpan);							
+//						}else if(aSpan.length === 1){
+//							fnwz(0);
+//							if(oWz<6&&oWz>2){
+//								oDiv.replaceChild(oSpan,oDiv.childNodes[0]);
+//							}else if(oWz<10&&oWz>5){
+//								oDiv.insertBefore(oSpan,oDiv.childNodes[0]);
+//							}else{
+//								oDiv.insertBefore(oSpan,oDiv.childNodes[1]);
+//							}
+//						}else if(aSpan.length === 2){
+//							fnwz(0);
+//							if(oWz<3&&oWz>=0){
+//								oDiv.insertBefore(oSpan,oDiv.childNodes[1]);
+//							}
+//							fnwz(1);
+//							if(oWz<6&&oWz>2){
+//								oDiv.replaceChild(oSpan,oDiv.childNodes[1]);
+//							}else if(oWz<10&&oWz>5){
+//								oDiv.replaceChild(oSpan,oDiv.childNodes[0]);
+//							}else{
+//								oDiv.insertBefore(oSpan,oDiv.childNodes[1]);
+//							}
+//						}else{
+//							fnwz(1);
+//							if(oWz<6&&oWz>2){
+//								oDiv.replaceChild(oSpan,oDiv.childNodes[1]);
+//							}else{
+//								oDiv.insertBefore(oSpan,oDiv.childNodes[1]);
+//							}
+//						}
+//					}
+//				}else{
+//					aDd[i].onmousedown = function(){						
+//						var oSpan = document.createElement('span');
+//						oSpan.innerHTML = this.innerHTML;
+//						if(aSpan.length === 0){
+//							oDiv.appendChild(oSpan);							
+//						}else if(aSpan.length === 1){
+//							fnwz(0);
+//							if(oWz<10&&oWz>6){
+//								oDiv.replaceChild(oSpan,oDiv.childNodes[0]);
+//							}else{
+//								oDiv.insertBefore(oSpan,oDiv.childNodes[1])
+//							}
+//						}else if(aSpan.length === 2){
+//							fnwz(1);
+//							if(oWz<10&&oWz>5){
+//								oDiv.replaceChild(oSpan,oDiv.childNodes[1]);
+//							}else{
+//								oDiv.insertBefore(oSpan,oDiv.childNodes[1]);
+//							}							
+//						}else{
+//							fnwz(2);
+//							if(oWz<10&&oWz>5){
+//								oDiv.replaceChild(oSpan,oDiv.childNodes[2]);
+//							}else{
+//								oDiv.insertBefore(oSpan,oDiv.childNodes[2]);
+//							}
+//						}
+//					}
+//				}
+//			}
+//		}
+
+	window.onload = function(){
+		var aDl = document.getElementsByTagName('dl'),
+			oDiv = document.getElementById('div1'),
+			str1 = '',
+			str2 = '',
+			str3 = '';
+			
+			for(var i = 0; i < aDl.length; i++){
+				var aDd = aDl[i].getElementsByTagName('dd');
+				aDl[i].index = i;
+				for(var j = 0; j < aDd.length; j++){
+					aDd[j].onclick = function(){
+						switch(this.parentNode.index){
+							case 0:
+								str1 = '<span>'+this.innerHTML+'</span>';
+								break;
+							case 1:
+								str2 = '<span>'+this.innerHTML+'</span>';
+								break;
+							case 2:
+								str3 = '<span>'+this.innerHTML+'</span>';
+								break;
+						}
+						
+						oDiv.innerHTML = str1+ str2 + str3;
+					}
+				}
+			}
+	}
+	</script>
+	<body>
+		<dl>
+			<dt>地区</dt>
+			<dd>西乡塘</dd>
+			<dd>高新</dd>
+			<dd>江南</dd>
+		</dl>
+		<dl>
+			<dt>职位</dt>
+			<dd>Ai</dd>
+			<dd>设计</dd>
+			<dd>后端</dd>
+		</dl>
+		<dl>
+			<dt>薪资</dt>
+			<dd>3000</dd>
+			<dd>5000</dd>
+			<dd>8000</dd>
+		</dl>
+		<div id="div1"></div>
+	</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				height:2000px;
+			}
+			body,div{
+				position:relative;
+				margin:0;
+				padding:0;
+			}
+			
+			div{
+				position:absolute;
+				top:0;	
+				width:120px;
+				height:400px;
+				background:orange;
+				float:left;
+			}
+			
+			.left{
+				left:0;
+			}
+			
+			.right{
+				right:0;
+			}
+		</style>
+		
+		<script>
+			window.onload = function(){
+				var aDiv = document.getElementsByTagName('div');
+				
+				function fntop(){
+					var clientHeight = document.documentElement.clientHeight||document.body.clientHeight;
+					var scroll = document.documentElement.scrollTop||document.body.scrollTop;
+					for(var i = 0; i<aDiv.length; i++){
+						aDiv[i].style.top = (clientHeight - aDiv[i].offsetHeight)/2+scroll+'px';
+					}
+				}
+				
+				fntop();				
+				window.onscroll = fntop;				
+				window.onresize = fntop;
+			}
+		</script>
+	</head>
+	<body>
+		<div class="left"></div>
+		<div class="right"></div>
+	</body>
+</html>

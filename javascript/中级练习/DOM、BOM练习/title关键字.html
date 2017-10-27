@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style type="text/css">
+		p{
+			display:block;
+			width:600px;
+			margin:0 auto;
+			padding-top:100px;
+			font-size:25px;
+			line-height:60px;
+		}
+		
+		span[title]{
+			width:auto;
+			color:orange;
+			position:relative;
+		}
+		
+		span:hover{
+			cursor:pointer;	
+		}
+		
+		.title{
+			position:absolute;
+			display:none;
+			padding:5px 10px;
+			white-space:nowrap;
+			background:#999;
+			color:#fff;
+			border:1px solid #000;
+			top:42px;
+			left:1px;			
+		}
+	</style>
+	<script>
+		window.onload = function(){
+			var oP = document.getElementById('p1');
+			var aSpan = oP.getElementsByTagName('span');
+			
+			console.log(aSpan[0].getAttribute('title'));
+			
+			for(var i = 0; i < aSpan.length; i++){
+				
+				if(aSpan[i].getAttribute('title')){
+					var tip = document.createElement('span');
+					tip.className = 'title';
+					tip.innerHTML = aSpan[i].title;					
+					aSpan[i].appendChild(tip);					
+					aSpan[i].onmouseover = function(){
+						this.children[0].style.display = 'block';
+					}
+					
+					aSpan[i].onmouseout = function(){
+						this.children[0].style.display = 'none';
+					}
+				}
+			}
+		}
+	</script>
+	<body>
+		<p id="p1">
+			想起了几年前杨丽娟执意要嫁刘德华事件，从16岁疯狂迷恋<span title="刘德华111">刘德华</span>，倾家荡产赴香港见<span title="刘德华111111">刘德华</span>，自己的爹卖肾筹集路费去见刘德华，最后借高利贷赴香港见刘德华，并要求单独见刘德华1.5小时，
+			最后他爹被逼无奈写了一封控诉刘德华的遗书后跳海自杀，并告刘德华要求赔偿<span title="刘德华112341">100万</span>。 不过这件事最终的结果还是好的，多年以后她也回归了正常的生活
+		</p>
+	</body>
+</html>
