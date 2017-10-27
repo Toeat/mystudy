@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			window.onload = function(){
+				(function(){
+					var oB = document.getElementById('btn1');
+					
+					oB.onclick = function(){
+						var x = null;
+						
+						//兼容方法1
+						if(window.XMLHttpRequest){
+							x = new XMLHttpRequest();
+						}else{
+							x = new ActiveXObject('Microsoft.XMLHTTP');
+						}
+//						//兼容方法2
+//						try{
+//							x = new XMLHttpRequest();
+//						}catch(e){
+//							x = new ActiveXObject('Microsoft.XMLHTTP');
+//						}
+						
+						x.open('get','getlist.php',true);
+						x.send();
+						
+						x.onreadystatechange = function(){
+							if(x.readyState == 4){
+								if(x.status == 200){
+									alert(x.responseText);
+								}else{
+									alert(x.status);
+								}							
+							}
+						}
+					}
+				})();											
+			}
+		</script>
+	</head>
+	<body>
+		<input type="button" name="btn1" id="btn1" value="按钮" />
+	</body>
+</html>

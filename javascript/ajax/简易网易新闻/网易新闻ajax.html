@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<script src="../js/json.js"></script>
+	<script src="../js/ajax.js"></script>
+	<script>
+		window.onload = function(){
+			(function(){
+				var oB = document.getElementById('btn1');
+					
+				oB.onclick = function(){
+					ajax('get','../getnews.php','',function(data){
+						var data = JSON.parse(data);
+						var oUl = document.getElementById('ul1');
+						var html = '';
+		
+						for(var i = 0; i < data.length; i++) {
+							html += '<li><a>' + data[i].title + '</a>[<span>' + data[i].date + '</span>]</li>';
+						}
+		
+						oUl.innerHTML = html;
+					});
+						
+					setInterval(function(){
+						ajax('get','../getnews.php','',function(data){
+							var data = JSON.parse(data);
+							var oUl = document.getElementById('ul1');
+							var html = '';
+			
+							for(var i = 0; i < data.length; i++) {
+								html += '<li><a>' + data[i].title + '</a>[<span>' + data[i].date + '</span>]</li>';
+							}
+			
+							oUl.innerHTML = html;
+						});
+					},10000);
+				}
+			})();											
+		}
+	</script>
+	<body>
+		<input type="button" name="btn1" id="btn1" value="按钮" />
+		<ul id='ul1'>
+			
+		</ul>
+	</body>
+</html>

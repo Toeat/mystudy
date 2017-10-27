@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#q{
+				width:300px;
+				height:30px;
+				padding:5px;
+				border:1px solid #F90;
+				font-size:16px;
+			}
+			
+			dl{
+				border-bottom:1px dotted #FF9900;
+			}
+			
+			dl dt{
+				font-weight:bold;
+			}
+			
+			dl dd img{
+				display:block;
+				width:200px;
+			}
+		</style>
+		<script>
+			function phf(data){
+				var oUl = document.getElementById('ul1');
+				var html = '';
+				if(data.s.length){
+					oUl.style.display = 'block';
+					for(var i=0; i<data.s.length; i++){
+						html += '<li><a href="https://www.baidu.com/baidu?word='+ data.s[i] +'">'+ data.s[i] +'</a></li>';
+					}
+					
+					oUl.innerHTML = html;
+				}else{
+					oUl.style.display = 'none';
+				}
+			}
+		</script>
+		<script>
+			function fn1(data){
+				var oMsg = document.getElementById('msg');
+				var oList = document.getElementById('dl1');
+				
+				console.log(data);
+				oMsg.innerHTML = data.title.$t + ':' + data['opensearch:totalResults'].$t;
+				var aEntry = data.entry;
+				var html = '';
+				for(var i=0; i<aEntry.length; i++){
+					html += '<dl><dt>'+ aEntry[i].title.$t +'</dt><dd><img src="'+ aEntry[i].link[2]['@href'] +'"/></dd></dl>';
+				}
+				
+				document.body.innerHTML += html;
+			}
+			window.onload = function(){
+				var oQ = document.getElementById('q');
+				var oBtn = document.getElementById('btn');
+				var oMsg = document.getElementById('msg');
+				var oList = document.getElementById('dl1');
+				
+				oBtn.onclick = function(){
+					if(oQ.value != ''){
+						var oScript = document.createElement('script');
+						oScript.src = 'https://api.douban.com/book/subjects?q='+ oQ.value +'&alt=xd&callback=fn1';
+						document.body.appendChild(oScript);
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<input type="text" id="q" />
+		<input type="button" value="搜索" id="btn" />
+		<p id="msg"></p>
+		<hr/>
+	</body>
+</html>

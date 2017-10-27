@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			ul{
+				margin:0;
+				padding:0;
+				width:1200px;
+				overflow:hidden;
+				margin:0 auto;;
+			}
+			
+			ul li{
+				list-style:none;
+				margin-left:20px;
+				width:278px;
+				float:left;
+			}
+			
+			li div{
+				margin-bottom:20px;
+				padding:10px;
+				border:1px solid #000;
+				/*border:1px solid #000;*/
+			}
+			
+			li div img{
+				display:block;
+				width:256px;
+			}
+		</style>
+		<script src="../js/json.js"></script>
+		<script src="../js/ajax.js"></script>
+		<script>
+			window.onload = function(){
+				
+				(function(){
+					var oUl = document.getElementById('ul1');
+					var aLi = oUl.getElementsByTagName('li');
+					var iLen = aLi.length;
+					var iPage = 1;
+					var b = true;
+					
+					//获取初始化数据
+					function getList(){
+						ajax('get','../getPics.php','cpage='+iPage,function(data){
+						
+							var data = JSON.parse(data);
+							
+							if(!data.length){
+								return;
+							}
+							
+							for(var i=0; i<data.length; i++){
+								var _index = getShort();
+								var oDiv = document.createElement('div');
+								var oImg = document.createElement('img');
+								var oP = document.createElement('p');
+								
+								oImg.src = data[i].preview;
+								oImg.style.width = '256px';
+								oImg.style.height = data[i].height * (256 / data[i].width) + 'px';
+								oP.innerHTML = data[i].title;
+								
+								oDiv.appendChild(oImg);
+								oDiv.appendChild(oP);
+								aLi[_index].appendChild(oDiv);
+								
+							}
+							
+							b = true;
+						});
+					}
+					
+					getList();
+					
+					window.onscroll = function(){
+						var _index = getShort();
+						var oLi = aLi[_index];
+						var scrollTop =  document.documentElement.scrollTop || document.body.scrollTop;
+						
+						if(getTop(oLi) + oLi.offsetHeight < document.documentElement.clientHeight + scrollTop){
+							if(b){
+								b = false;
+								iPage++;
+								getList();
+							}
+						}
+					}
+					
+					function getShort(){
+						var index = 0;
+						var ih = aLi[index].offsetHeight;
+						
+						for(var i = 1; i<iLen; i++){
+							if(aLi[i].offsetHeight < ih){
+								index = i;
+								ih = aLi[i].offsetHeight;
+							}
+						}
+						
+						return index;
+					}
+					
+					function getTop(obj){
+						var iTop = 0;
+						
+						while (obj){
+							iTop += obj.offsetTop;
+							obj = obj.offsetParent;
+						}
+						
+						return iTop;
+					}
+					
+				})();
+				
+			}
+		</script>
+	</head>
+	<body>
+		<ul id="ul1">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</body>
+</html>
