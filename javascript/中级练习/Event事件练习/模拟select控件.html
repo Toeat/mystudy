@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			dl{
+				width:250px;
+				height:auto;
+				margin:50px auto;
+			}
+			dt{
+				height:40px;
+				border:1px solid orange;
+				overflow:hidden;
+			}
+			
+			dt span{
+				margin:0 6px;
+				line-height:40px;				
+			}
+			
+			dd{
+				display:none;
+				height:40px;
+				padding:0;
+				margin:0;
+				text-indent:10px;
+				line-height:40px;
+				border:1px solid orange;
+				border-top:none;
+				border-bottom:none;
+			}
+			
+			dd:hover{
+				color:#fff;;
+				background:orange;	
+			}
+			
+			.dd-last{
+				border-bottom:1px solid orange;;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload = function(){
+				var	oDt = document.getElementsByTagName('dt')[0],
+					aDd = document.getElementsByTagName('dd'),
+					onOff = true;
+					
+				
+				function fndd(){
+					for(var i = 0; i < aDd.length; i++){
+							aDd[i].onclick = function(){
+							this.style.background = 'orange';
+							var oSpan = document.createElement('span');
+							oSpan.innerHTML = this.innerHTML+',';	
+							oDt.appendChild(oSpan);
+						}
+					}
+				}
+				
+				function fnddhide(){
+					for(var i = 0; i < aDd.length; i++){
+						aDd[i].style.display = 'none';
+					}
+				}
+				
+				oDt.onclick = function(){
+					for(var i = 0; i < aDd.length; i++){
+						aDd[i].style.display = 'block';
+						
+						aDd[i].onclick = function(){
+							oDt.innerHTML = '<span>'+this.innerHTML+'<span>';
+							for(var j = 0; j < aDd.length; j++){
+								aDd[j].style.display = 'none';
+								aDd[j].style.background = '';
+							}
+							
+							onOff = true;
+						}
+					}
+						
+					document.onkeydown = function(ev){
+						var ev = ev||event;
+						document.onselectstart = function(){
+							return false;
+						}
+						
+						if(onOff){
+							oDt.innerHTML = '';
+							onOff = false;
+						}
+						
+						switch(ev.keyCode){							
+							case 16:
+								fndd();
+								break;
+							case 17:
+								fndd();
+								break;														
+						}
+					}
+					
+					document.onkeyup = function(ev){
+						var ev = ev||event;
+						document.onselectstart = function(){
+							return true;
+						}
+						switch(ev.keyCode){
+							case 16:
+								fnddhide();
+								break;
+							case 17:
+								fnddhide();
+								break;
+						}							
+						
+					}
+				}
+			}			
+		</script>
+	</head>
+	<body>
+		<dl>
+			<dt></dt>
+			<dd>宋体</dd>
+			<dd>黑体</dd>
+			<dd>楷体</dd>
+			<dd>微软雅黑</dd>
+			<dd class="dd-last">新宋体</dd>
+		</dl>
+	</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				position:relative;
+				margin:0;
+				padding:0;
+			}
+			div{
+				position:absolute;
+				width:100px;
+				height:100px;
+				background:orange;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload = function(){
+				var oDiv = document.getElementsByTagName('div')[0];
+				var keyfx = {l:null,t:null,r:null,b:null};
+				
+				
+				setInterval(function(){
+					if(keyfx.l){
+						oDiv.style.background = 'red';
+						oDiv.style.left = oDiv.offsetLeft - 10 +'px';
+					}
+					if(keyfx.t){
+						oDiv.style.background = 'greenyellow';
+						oDiv.style.top = oDiv.offsetTop - 10 +'px';
+					}
+					if(keyfx.r){
+						oDiv.style.background = '#00CCFF';
+						oDiv.style.left = oDiv.offsetLeft + 10 +'px';
+					}
+					if(keyfx.b){
+						oDiv.style.background = 'fuchsia';
+						oDiv.style.top = oDiv.offsetTop + 10 +'px';
+					}
+				
+				},30)						
+				
+				
+				document.onkeydown = function(ev){
+					var ev = ev||event;				
+					switch(ev.which){
+						case 37:
+							keyfx.l = true;
+							break;
+						case 38:
+							keyfx.t = true;
+							break;
+						case 39:
+							keyfx.r = true;
+							break;
+						case 40:
+							keyfx.b = true;
+							break;
+					}
+					
+				}
+				
+				document.onkeyup = function(ev){
+					var ev = ev||event;				
+					switch(ev.which){
+						case 37:
+							keyfx.l = false;
+							break;
+						case 38:
+							keyfx.t = false;
+							break;
+						case 39:
+							keyfx.r = false;
+							break;
+						case 40:
+							keyfx.b = false;
+							break;
+					}
+					
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div></div>
+	</body>
+</html>
