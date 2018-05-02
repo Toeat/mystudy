@@ -1,0 +1,21 @@
+{
+  "name": "san",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel index.html",
+  	"dev": "npm run start",
+ 		 "build": "parcel build index.html"
+
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-preset-env": "^1.6.1",
+    "less": "^3.0.2",
+    "node-sass": "^4.9.0"
+  }
+}
