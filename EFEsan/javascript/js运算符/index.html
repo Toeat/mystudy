@@ -1,9 +1,50 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-	</head>
-	<body>
-	</body>
+<head>
+    <meta charset="UTF-8">    
+    <title>IFE ECMAScript</title>
+</head>
+<body>        
+    <input id="first-number" type="number" value="0" placeholder="第一个数字">
+    <input id="second-number" type="number" value="0" placeholder="第二个数字">
+    <button id="add-btn">加</button>
+    <button id="minus-btn">减</button>
+    <button id="times-btn">乘</button>
+    <button id="divide-btn">除</button>
+    <p id="result">运算结果</p>
+    <script>
+		(function(){
+			var nFirst = document.getElementById('first-number'),
+				nSecond = document.getElementById('second-number'),
+				oAdd = document.getElementById('add-btn'),
+				oMinus = document.getElementById('minus-btn'),
+				oTimes = document.getElementById('times-btn'),
+				oDivide = document.getElementById('divide-btn'),
+				oResult = document.getElementById('result');
+
+//			突发奇想
+//			aSymbol = [+,-,*,/];
+//			function fnSymbol(index){
+//				aSymbol = ['+','-','*','/'];
+//				oResult.innerHTML = '运算结果: ' + (parseInt(nFirst.value) symbol[index] parseInt(nSecond.value));
+//			}
+			
+			oAdd.onclick = function(){
+				oResult.innerHTML = '运算结果: ' + (parseInt(nFirst.value) + parseInt(nSecond.value));	
+			}
+			
+			oMinus.onclick = function(){
+				oResult.innerHTML = '运算结果: ' + ( parseInt(nFirst.value) - parseInt(nSecond.value));			
+			}
+			
+			oTimes.onclick = function(){
+				oResult.innerHTML = '运算结果: ' + ( parseInt(nFirst.value) * parseInt(nSecond.value));			
+			}
+			
+			oDivide.onclick = function(){
+				oResult.innerHTML = '运算结果: ' + ( parseInt(nFirst.value) / parseInt(nSecond.value));			
+			}
+		})();
+    </script>
+</body>
 </html>

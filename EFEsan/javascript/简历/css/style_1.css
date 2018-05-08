@@ -1,0 +1,59 @@
+body,div,h1,h2,h3,h4,h5,h6,ul,li,p{
+	margin: 0;
+	padding: 0;
+}
+
+ul{
+	list-style:none;
+}
+
+a{
+	text-decoration:none;
+}
+
+.content{
+    margin:20px auto;
+	padding:0 22px;
+	width:1024px;
+	border: 2px solid #aaa;
+}
+
+.content .clear-fl{
+	margin-bottom:0;
+}
+
+.content .clear-fl li{
+	margin-bottom:20px;
+	float:none;
+}
+
+h1{
+	font-size:36px;
+	line-height:60px;
+	font-weight:400;
+}
+
+h2{
+	font-size:30px;
+	line-height:60px;
+	font-weight:400;
+}
+
+.text{
+	margin-bottom:20px;
+	overflow:auto;
+	font-size:20px;
+}
+
+.text li{
+	float:left;
+	margin-right:50px;
+}
+
+.text span,.text a{
+	padding-left:10px;
+}
+
+.text p{
+	line-height:30px;
+}
