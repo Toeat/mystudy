@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<table border="1">
+		  <tr>
+		    <th colspan="9">九九乘法表</th>
+		  </tr>
+		  <tr>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		  </tr>
+		  <tr>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		  </tr>
+		  <tr>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		  </tr>
+		  <tr>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		  </tr>
+		  <tr>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		  </tr>
+		  <tr>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		  </tr>
+		  <tr>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		  </tr>
+		  <tr>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		  </tr>
+		  <tr>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		    <td></td>
+		  </tr>
+		</table>
+		<script type="text/javascript">
+			(function(){
+				var num = 0;
+				var str = '';
+				var aTd = document.getElementsByTagName('td'); 
+				while(num < 9){
+					num++;
+					var num2 = 0;
+					var aTr = document.getElementsByTagName('tr');
+					var aTd = aTr[num].getElementsByTagName('td'); 
+					
+					while(num2 < 9){
+						num2++
+						var result =  num2 * num;
+						aTd[num2-1].innerHTML =  num +'*'+ num2 +'='+ result;
+					}					
+				}				
+			})()
+		</script>
+	</body>
+</html>

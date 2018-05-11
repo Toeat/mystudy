@@ -27,22 +27,28 @@
 //			function fnSymbol(index){
 //				aSymbol = ['+','-','*','/'];
 //				oResult.innerHTML = '运算结果: ' + (parseInt(nFirst.value) symbol[index] parseInt(nSecond.value));
-//			}
-			
-			oAdd.onclick = function(){
-				oResult.innerHTML = '运算结果: ' + (parseInt(nFirst.value) + parseInt(nSecond.value));	
+//			}		
+			oAdd.onclick = function(){				
+				oResult.innerHTML = '运算结果: ' + (parseInt(nFirst.value) + parseInt(nSecond.value));
 			}
 			
-			oMinus.onclick = function(){
-				oResult.innerHTML = '运算结果: ' + ( parseInt(nFirst.value) - parseInt(nSecond.value));			
+			oMinus.onclick = function() {
+				oResult.innerHTML = '运算结果: ' + (parseInt(nFirst.value) - parseInt(nSecond.value));
 			}
 			
-			oTimes.onclick = function(){
-				oResult.innerHTML = '运算结果: ' + ( parseInt(nFirst.value) * parseInt(nSecond.value));			
+			oTimes.onclick = function() {
+				oResult.innerHTML = '运算结果: ' + (parseInt(nFirst.value) * parseInt(nSecond.value));
 			}
 			
-			oDivide.onclick = function(){
-				oResult.innerHTML = '运算结果: ' + ( parseInt(nFirst.value) / parseInt(nSecond.value));			
+			oDivide.onclick = function() {
+				var num = parseFloat(((nSecond.value) / parseInt(nFirst.value)).toFixed(2));
+				
+				if(num == 0) {
+					console.log('结果为0');
+				} else {
+					oResult.innerHTML = '运算结果: ' + num;
+				}
+
 			}
 		})();
     </script>
