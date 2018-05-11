@@ -5,15 +5,17 @@
 		<title></title>
 	</head>
 	<body>
+		<p id="p1"></p>
 		<script>
 			(function(){
+				var oP = document.getElementById('p1');
 				var num = 0;
-				while(num < 1000){
+				while(num < 100){
 					num++;
 					if(num%3 == 0 || (num+'').indexOf('3') >= 0){
-						console.log('pa');
+						oP.innerHTML  = oP.innerHTML + 'pa ';
 					}else{
-						console.log(num);
+						oP.innerHTML  = oP.innerHTML + num + ' ';
 					}								
 				}				
 			})()

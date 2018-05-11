@@ -120,10 +120,10 @@
 					var aTr = document.getElementsByTagName('tr');
 					var aTd = aTr[num].getElementsByTagName('td'); 
 					
-					while(num2 < 9){
+					while(num2 < num){
 						num2++
 						var result =  num2 * num;
-						aTd[num2-1].innerHTML =  num +'*'+ num2 +'='+ result;
+						aTd[num2-1].innerHTML =  num2 +'*'+ num +'='+ result;
 					}					
 				}				
 			})()
