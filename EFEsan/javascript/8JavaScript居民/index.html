@@ -58,6 +58,14 @@
 			</div>
 			<p></p>
 		</div>
+		<div class="cont" id="cont-three">
+			<input id="queue-input" type="text">
+			<p id="queue-cont">队列内容：apple-&gt;pear</p>    
+			<button id="in-btn">入队</button>
+			<button id="out-btn">出队</button>
+			<button id="font-btn">打印队头元素内容</button>
+			<button id="empty-btn">判断队列是否为空</button>
+		</div>
 		<script type="text/javascript">
 			(function(){
 				var Contone = document.getElementById('cont-one'),
@@ -385,6 +393,7 @@
 					}
 			})();
 			(function(){
+				console.log('去除空格-------------------------------');
 				function diyTrim(str) {
 				    var result = "";
 				    var index1 = '';
@@ -435,7 +444,8 @@
 				console.log(removeRepetition("abc"));
 				console.log('-------------------------------');
 			})();
-			(function() {
+			(function(){
+				console.log('对象操作-------------------------------');
 				var tree = {
 					"id": 0,
 					"name": "root",
@@ -489,37 +499,204 @@
 					}
 				}
 				
-				var len = tree.length;
-				for(var i in tree){
-					
-				}
-				
 				
 				// 假设id和name均不会重复，根据输入name找到对应的id
-				function findIdByName(name){
+				function findIdByName(obj,name){
+					if(obj.name === name){
+						console.log('ID是:' + obj.id);
+					}
 					
+					if(obj.left){
+						findIdByName(obj.left,name);
+					}
+					
+					if(obj.right){
+						findIdByName(obj.right,name);
+					}
 				}
 				
+				findIdByName(tree,"Tony");
 				
 				// 假设id和name均不会重复，根据输入id找到对应的name
-				function findNameById(id) {
-			
+				function findNameById(obj,id){
+					if(obj.id === id){
+						console.log('name是:' + obj.name);
+					}
+					
+					if(obj.left){
+						findNameById(obj.left,id);
+					}
+					
+					if(obj.right){
+						findNameById(obj.right,id);
+					}
 				}
-			
+				findNameById(tree,6);
+				
+				
 				// 把这个对象中所有的名字以“前序遍历”的方式全部输出到console中
-				function getListWithDLR() {
-			
+				function getListWithDLR(obj){
+					console.log(obj.name);					
+					if(obj.left){
+						getListWithDLR(obj.left);
+					}
+					if(obj.right){
+						getListWithDLR(obj.right);
+					}
 				}
-			
+				console.log('前序遍历-------------------------------');
+				getListWithDLR(tree);
 				// 把这个对象中所有的名字以“中序遍历”的方式全部输出到console中
-				function getListWithLDR() {
-			
+				function getListWithLDR(obj){									
+					if(obj.left){
+						getListWithLDR(obj.left);
+					}		
+					
+					console.log(obj.name);
+					
+					if(obj.right){
+						getListWithLDR(obj.right);
+					}
 				}
-			
+				console.log('中序遍历-------------------------------');
+				getListWithLDR(tree);
 				// 把这个对象中所有的名字以“后序遍历”的方式全部输出到console中
-				function getListWithLRD() {
-			
+				function getListWithLRD(obj) {
+					if(obj.left){
+						getListWithLRD(obj.left);
+					}		
+					
+					if(obj.right){
+						getListWithLRD(obj.right);
+					}
+					
+					console.log(obj.name);
 				}
+				console.log('后序遍历-------------------------------');
+				getListWithLRD(tree);
+			})();
+			(function(){
+				var oContthree = document.getElementById('cont-three'),
+					oInput = oContthree.getElementsByTagName('input')[0],
+					aBtn = oContthree.getElementsByTagName('button'),
+					oP = oContthree.getElementsByTagName('p')[0],
+					queue = ["apple", "pear"];
+					
+					aBtn[0].onclick = function(){
+						if(oInput.value !== ''){
+							var str = '';
+							queue.unshift(oInput.value);
+							str = queue.join('->')												
+							oP.innerHTML = '队列内容：' +str;
+							oInput.value = '';
+							
+						}else{
+							console.log('输入值不能为空');
+						}
+					}
+					
+					aBtn[1].onclick = function(){
+						var str = '';
+						queue.pop();
+						str = queue.join('->');
+						oP.innerHTML = '队列内容：' +str;
+						oInput.value = '';
+					}
+					
+					aBtn[2].onclick = function(){
+						oP.innerHTML = queue.slice(0,1);
+					}
+					
+					aBtn[3].onclick = function(){
+						var str = '';
+						console.log(queue);
+						if(queue.length === 0){
+							oP.innerHTML = '队列内容为空';
+						}else{
+							str = queue.join('->');
+							oP.innerHTML = '队列内容：' + str;
+						}
+					}
+					
+			})();
+			(function(){
+				console.log('排序-------------------------------');
+				var arr1 = [43, 54, 4, -4, 84, 100, 58, 27, 140];
+				var arr2 = ['apple', 'dog', 'cat', 'car', 'zoo', 'orange', 'airplane'];
+				var arr3 = [[10, 14], [16, 60], [7, 44], [26, 35], [22, 63]];
+				var arr4 = [
+						    {
+						        id: 1,
+						        name: 'candy',
+						        value: 40
+						    }, {
+						        id: 2,
+						        name: 'Simon',
+						        value: 50
+						    }, {
+						        id: 3,
+						        name: 'Tony',
+						        value: 45
+						    }, {
+						        id: 4,
+						        name: 'Annie',
+						        value: 60
+						    }
+				];
+				
+				arr1.sort(function(a,b){
+					return b - a;
+				});
+				console.log(arr1);
+				arr2.sort(function(a,b){
+					return a - b;
+				});
+				console.log(arr2);	
+				arr2.sort(function(a,b){
+					  if (a < b ) {           // 按某种排序标准进行比较, a 小于 b
+					    return 1;
+					  }
+					  if (a > b ) {
+					    return -1;
+					  }
+					  // a must be equal to b
+					  return 0;
+				});
+				console.log(arr2);
+				arr3.sort(function(a,b){
+					return b[1] - a[1];
+				});
+				console.log(arr3);
+				arr4.sort(function(a,b){
+					return a.value - b.value;
+				});
+				console.log(arr4);
+			})();
+			(function(){
+				console.log('转换-------------------------------');
+				var arr1 = [];
+				var scoreObject = {
+								    "Tony": {
+								        "Math": 95,
+								        "English": 79,
+								        "Music": 68
+								    }, 
+								    "Simon": {
+								        "Math": 100,
+								        "English": 95,
+								        "Music": 98
+								    }, 
+								    "Annie": {
+								        "Math": 54,
+								        "English": 65,
+								        "Music": 88
+								    }
+								};
+				for(var i in scoreObject){
+					arr1.push([i]);
+				}
+				
+				console.log(arr1);
 			})();
 		</script>
 	</body>
