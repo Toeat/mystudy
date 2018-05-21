@@ -3,7 +3,30 @@
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
+		<style type="text/css">
+			.border{
+				padding:50px;
+				border:1px solid #ccc;
+			}
+		</style>
 	</head>
 	<body>
+		<div class="border">
+		    <input id="email-input" type="text">
+		    <ul id="email-sug-wrapper" class="email-sug"></ul>
+		</div>
+		<script type="text/javascript">
+			(function(){
+				var postfixList = ['163.com', 'gmail.com', '126.com', 'qq.com', '263.net'];
+				var oEmail = document.getElementById('email-input');
+				var oSug = document.getElementById('email-sug-wrapper');
+				
+				oEmail.onkeyup = function(){
+					if(typeof oEmail.value === 'string'){
+						console.log(oEmail.value);
+					}
+				}
+			})()
+		</script>
 	</body>
 </html>
