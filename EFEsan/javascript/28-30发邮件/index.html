@@ -184,9 +184,9 @@
 					if(target.nodeName === 'P'){
 						var ele = target.parentNode.childNodes;
 						for(var i = 0; i < ele.length; i++){
-							ele[i].style.background = '';
+							ele[i].style.backgroundColor = '';
 						}
-						target.style.background = '#CCC';
+						target.style.backgroundColor = '#CCC';
 					}
 				}
 				
@@ -205,10 +205,10 @@
 				//元素背景重置和选中
 				function fnResetindex(aEle,index){
 					for(var i = 0; i < aEle.length; i++){
-						aEle[i].style.background = '';
+						aEle[i].style.backgroundColor = '';
 					}
 					
-					aEle[index].style.background = 'coral';
+					aEle[index].style.backgroundColor = 'coral';
 				}
 				
 				//网上兼容的选择文字
