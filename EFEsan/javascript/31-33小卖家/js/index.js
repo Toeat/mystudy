@@ -4,7 +4,8 @@
 	var oRegion = document.getElementById('region-radio-wrapper');
 	var oProduct = document.getElementById('product-radio-wrapper');
 	var oCont = document.getElementById('table-wrapper');
-	
+	var Colorarr = ['#609','#666FF','#00C','#93C','#669','#606','#90F','#336','#06C'];	
+	var Colorindex = 0;
 	//选择input的value添加到数组
 	function fnSeletdate(arr){
 		var oDate = [];					
@@ -50,7 +51,6 @@
 		for(var j = 0; j < data.length; j++){
 			var oTr = document.createElement('tr');
 			
-			console.log(lenr);
 			for(x in data[j]){
 				
 				if(x === 'product'){
@@ -149,8 +149,36 @@
 				}
 			}
 			
-			fnSetdate();
+			fnEvent(oCont,'mouseover',fnMouseover);
 			
+
+			fnAllline(true);
+			fnAllline(false);
+			
+			fnSetdate();	
+		}
+	}
+	
+	//元素移入
+	function fnMouseover(ev){
+		var e = ev || window.event;　　　　
+		var target = e.target || e.srcElement;
+		var aTr = oCont.getElementsByTagName('tr');
+		var arr = [];
+		var asSeletdata = fnSetdate();
+		
+		if(target.nodeName === 'TD'){				
+			var len  = target.parentNode.children.length;
+			var Nodes = target.parentNode.children;
+			
+			for(var i = 1; i < len; i++){
+				if(parseInt(Nodes[i].innerHTML)){
+					arr.push(parseInt(Nodes[i].innerHTML));
+				}
+			}
+								
+			fnColumnar(arr);
+			fnBrokenline(arr,true,asSeletdata,0);
 		}
 	}
 	
@@ -178,6 +206,7 @@
 		ele.innerHTML += '全选';
 		
 		fnEvent(ele,'click',fnClick);
+		
 	}
 	
 	//筛选指定数据
@@ -207,7 +236,26 @@
 		ar = fnAddarr(aSettwo,ar);
 	
 		fnaddtoEle(ar,aSetone.length,aSettwo.length);
+		return ar;
 	}
+	
+	//显示选中所有线
+	function fnAllline(tf){
+		var asSeletdata = fnSetdate();
+		for(var x = 0; x < asSeletdata.length; x++){
+			for(z in asSeletdata[x]){
+				if(z === 'sale'){
+					fnBrokenline(asSeletdata[x][z],tf,asSeletdata,Colorarr[x]);
+					console.log(Colorarr[x]);
+				}				
+			}				
+		}		
+	}
+	
+	oCont.onmouseleave = function(){
+		fnAllline(true);
+		fnAllline(false);
+	};
 	
 	fnCreate(oRegion, [{
 	    value:"华东",
@@ -229,5 +277,6 @@
 	}, {
 	    value: "智能音箱",
 	    text: "智能音箱"
-	}]);							
-})()
+	}]);
+	
+})();

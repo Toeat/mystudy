@@ -6,11 +6,13 @@
 		<style type="text/css">
 			.border{
 				padding:50px;
-				border:1px solid #ccc;
+				border:1px solid #000;
+				overflow:hidden;
 			}
 			
 			table{
-				margin-top:60px;
+				overflow:hidden;
+				margin:60px 0;
 			}
 			
 			tr{
@@ -25,28 +27,33 @@
 				padding:0 20px;
 				text-align: center;
 			}
+			
+			#svg-box{
+				float:left;
+			}
+			
+			#table-wrapper{
+				width:1200px;
+				overflow:hidden;
+			}			
 		</style>
 	</head>
 	<body>
 		<div class="border">
-			<!--<select id="region-select-one">
-				<option>华东</option>
-				<option>华南</option>
-				<option>华北</option>
-			</select>
-			<select id="region-select-two">
-				<option>手机</option>
-				<option>笔记本</option>
-				<option>智能音箱</option>
-			</select>-->
 			<div id="region-radio-wrapper"></div>
 			<div id="product-radio-wrapper"></div>
-			<div id="table-wrapper">
-				
+			<div id="table-wrapper"></div>
+			<div id="svg-box">
+				<svg id="Bargraph" version="1" baseProfile="full" width="1000" height="350" xmlns="http://www.w3.org/2000/svg"></svg>
+			</div>
+			<div id="svg-box">
+				<canvas id="Brokenline" width="500" height="350"></canvas>
 			</div>
 		</div>
 		</div>
 		<script src="js/ife31data.js"></script>
+		<script src="js/bar.js"></script>
+		<script src="js/line.js"></script>
 		<script src="js/index.js"></script>
 	</body>
 </html>

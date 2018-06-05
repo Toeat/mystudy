@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.border{
+				padding:50px;
+				border:1px solid #ccc;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="border">
+			<svg version="1.1" baseProfile="full" width="1000" height="300" xmlns="http://www.w3.org/2000/svg">
+				<line x1="0" x2="100" y1="10" y2="100" stroke="orange" />
+				<rect x="150" y="0" width="100" height="100" rx="10" ry="10"/>
+				<circle cx="350" cy="50" r="50"/>
+				<text x="450" y="20">hello Svg</text>
+				<path d="M630 70 C620 0, 670 0, 670 70 Z" stroke="black" fill="green"/>
+				<path d="M640 90 C660 150, 730 150, 670 70 Z" stroke="black" fill="green"/>
+				<path d="M650 70 C550 70, 550 130, 650 100 Z" stroke="black" fill="green"/>
+				<circle cx="650" cy="80" r="25" fill="red"/>
+				<path d="M850 200 
+					C850 150, 600 100, 750 100 
+					C750 100, 700 50, 800 50
+					C800 50, 800 10, 880 0
+					C880 50, 900 10, 950 0
+					C950 50, 980 10, 980 80
+					C980 80, 1000 200, 910 200"stroke="black" fill="white"/>
+				<path d="M850 300 V120 L880 150 L910 120 V300" stroke="black" fill="white"/>
+			</svg>
+		</div>
+		<div class="border">
+			<canvas id="mapping" width="1200" height="500">
+				
+			</canvas>
+		</div>
+		<script type="text/javascript">
+			var canvas = document.getElementById('mapping');
+			if(canvas.getContext){
+				var ctx = canvas.getContext('2d');
+				
+				//线
+				ctx.beginPath(80,80);
+				ctx.moveTo(100,0);
+				ctx.lineTo(150,100);
+				ctx.lineTo(150,0);
+				ctx.closePath();
+				ctx.stroke();
+//				ctx.fill();
+				
+				//矩形
+				ctx.fillRect(10,10,55,50);		
+				
+				//圆形
+				ctx.beginPath(200,0);
+				ctx.arc(250,50,25,0,Math.PI*2 ,false);
+				ctx.closePath();
+				ctx.stroke();
+//				ctx.fill();
+
+				//文字
+				ctx.font="30px Arial";
+				ctx.fillText('Hello Canvas',300,50);
+				
+				//时钟
+				ctx.beginPath(600,0);
+				ctx.moveTo(650,110);
+				ctx.lineWidth = 1;
+				ctx.lineTo(650,150);
+				ctx.lineWidth = 4;
+				ctx.moveTo(648,150);
+				ctx.lineTo(670,150);
+				ctx.stroke();
+				
+				ctx.closePath();
+				ctx.beginPath(600,0);
+				ctx.arc(650,150,50,0,Math.PI*2 ,false);
+				ctx.lineWidth = 1;
+				ctx.closePath();
+				ctx.stroke();
+				
+				//云
+				ctx.beginPath(900,0);
+				ctx.moveTo(880,200);
+				ctx.quadraticCurveTo(750,150,880,100);
+				ctx.moveTo(880,100);
+				ctx.quadraticCurveTo(900,0,1000,70);
+				ctx.moveTo(1000,70);
+				ctx.quadraticCurveTo(1050,50,1050,100);
+				ctx.moveTo(1050,100);
+				ctx.quadraticCurveTo(1150,150,1050,200);
+				ctx.moveTo(1050,200);
+				ctx.lineTo(880,200);
+				ctx.stroke();
+			}
+
+		</script>
+	</body>
+</html>
