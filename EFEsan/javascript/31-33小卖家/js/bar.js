@@ -58,7 +58,7 @@ function fnColumnar(data){
 	}
 }
 
-fnColumnar(sourceData[0].sale);
+fnColumnar([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
 
 
 
