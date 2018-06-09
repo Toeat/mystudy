@@ -3,5 +3,5 @@
     或者是在查看目录前加https://toeat.github.io/mystudy/
  
 ## 关于内容
-   EFESAN中放的是2018的百度前端课程作业
-   javascript中放的是妙味课堂的课程作业
+    EFESAN中放的是2018的百度前端课程作业
+    javascript中放的是妙味课堂的课程作业
