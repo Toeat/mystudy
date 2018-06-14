@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>复制</title>
+<script src="jquery-1.10.1.min.js"></script>
+<style type="text/css">
+	.slide{
+		position:relative;
+		width:600px;
+		height:300px;
+		overflow:hidden;
+	}
+	
+	.slide div{
+		position:absolute;
+		left:0;
+		top:40px;
+		z-index:2;
+		width:250px;
+		height:200px;
+	}
+	
+	.slide .active{
+		position:absolute;
+		left:100px;
+		top:0;
+		width:500px;
+		height:300px;
+		z-index:3;
+	}
+</style>
+</head>
+
+<body>
+<button>上</button>
+<button>下</button>
+<div class="slide">
+	<div class="active" style="background:orange;"></div>
+	<div style="background:red;"></div>
+	<div style="background:green;"></div>
+	<div style="background:gainsboro;"></div>
+	<div style="background:salmon;"></div>
+</div>
+<script>
+	var onOff = true;
+	
+	$('.slide div').each(function(){
+		if($(this).is('.active')){
+			$(this).css('z-index',$('.slide div').length);
+		}else{
+			$(this).css('z-index',$('.slide div').length-$(this).index());
+		}
+	});
+	
+	$('body button').eq(0).on('click',function(){
+		if(onOff){
+			onOff = false;
+			
+			var prev = $('.slide .active').index() - 1;
+			if(prev >= $('.slide div').length){
+				prev = 0;
+			}
+			
+			$('.slide div').each(function(){
+				if(!$(this).is('.active')){
+					var z = parseInt($(this).css('z-index'));
+					$(this).css('z-index',z-1);
+				}
+			})
+					
+			$('.slide .active').animate({
+				'width':'250px',
+				'height':'200px',
+				'left':'0',
+				'top':'40px',	
+			},300);
+			
+			$('.slide div').eq(prev).animate({
+				'width':'500px',
+				'height':'300px',
+				'left':'280px',
+				'top':'0',	
+			},300,function(){
+				$('.slide div').eq(prev).animate({'left':'100px'});
+				$('.slide .active').css('left','0');
+				$('.slide .active').css('z-index','1');
+				$('.slide .active').removeClass('active');
+				$(this).addClass('active');
+				onOff = true;
+			});
+		}
+	});
+	
+	$('body button').eq(1).on('click',function(){
+		if(onOff){
+			onOff = false;	
+			var prev = $('.slide .active').index() + 1;
+			if(prev >= $('.slide div').length){
+				prev = 0;
+			}
+			
+			$('.slide div').each(function(){
+				if(!$(this).is('.active')){
+					var z = parseInt($(this).css('z-index'));
+					$(this).css('z-index',z+1)
+				}
+			})
+					
+			$('.slide .active').animate({
+				'width':'250px',
+				'height':'200px',
+				'left':'600px',
+				'top':'40px',	
+			},300);
+			
+			$('.slide div').eq(prev).animate({
+				'width':'500px',
+				'height':'300px',
+				'left':'100px',
+				'top':'0',	
+			},300,function(){
+				$('.slide .active').css('left','0');
+				$('.slide .active').css('z-index','1');
+				$('.slide .active').removeClass('active');
+				$(this).addClass('active');
+				onOff = true;
+			});
+		}
+	});
+</script>      
+</body>
+</html>
