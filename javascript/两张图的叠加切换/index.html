@@ -84,9 +84,10 @@
 			},300,function(){
 				$('.slide div').eq(prev).animate({'left':'100px'});
 				$('.slide .active').css('left','0');
-				$('.slide .active').css('z-index','1');
+				$('.slide .active').css('z-index','4');
 				$('.slide .active').removeClass('active');
 				$(this).addClass('active');
+				$(this).css('z-index','5');
 				onOff = true;
 			});
 		}
