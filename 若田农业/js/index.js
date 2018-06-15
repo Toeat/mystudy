@@ -16,7 +16,7 @@ $('.slick2').slick({
 	autoplaySpeed:3000,
 	speed: 600,
 	cssEase: 'linear',
-	pauseOnHover:true,
+//	pauseOnHover:true,
 	asNavFor: '.slick3',
 //	draggable:false,
 });
