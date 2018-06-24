@@ -11,6 +11,29 @@
 	width:94%;
 }
 
+.btn{
+	position:relative;
+	display:block;
+	width:8.6rem;
+	height:2rem;
+	line-height:2rem;
+	font-weight:bold;
+	font-size:1rem;
+	background:#018867;
+	color:#fff;
+}
+
+.btn:before{
+	position:absolute;
+	left:2%;
+	top:5%;
+	content:" ";
+	width:96%;
+	height:90%;
+	border:1px solid #279a7e;
+	box-sizing:border-box;;
+}
+
 .header{
 	width:100%;
 	overflow:hidden;
@@ -61,4 +84,99 @@
 .header .swiper1 img{
 	width:100%;
 	height:100%;	
+}
+
+/*底部*/
+.footer{
+	width:100%;
+	overflow: auto;
+}
+
+.footer .copyright{
+	overflow:hidden;
+}
+
+.copyright .back-top{
+	margin:1rem auto;
+	width:5rem;
+	height:5rem;
+	text-align:center;
+	color:#018867;
+	font-size:1.2rem;
+}
+
+.copyright .back-top img{
+	margin:0 auto;
+	display:block;
+	width:3.4rem;
+	height:3.4rem;
+}
+
+.copyright .button{
+	overflow:hidden;
+	margin:0 auto;
+	width:80%;
+	text-align:center;
+}
+
+.copyright .button a:nth-child(1){
+	float:left;
+	width:48%;
+	height:2.4rem;
+	line-height:2.4rem;
+}
+
+.copyright .button a:nth-child(2){	
+	float:right;
+	width:48%;
+	background:#616161;
+	height:2.4rem;
+	line-height:2.4rem;
+}
+
+.copyright .button a:nth-child(2):before{
+	border-color:#818181;
+}
+
+.copyright .copy{
+	text-align:center;
+	font-size:1rem;
+	line-height:3rem;
+}
+
+.footer .foot-menu{
+	position:fixed;
+	bottom:0;
+	left:0;
+	width:100%;
+	height:5rem;
+	z-index:9999;
+}
+
+.footer .foot-menu a{
+	float:left;
+	width:25%;
+	height:5rem;
+	border-right:1px solid #279a7e;
+	background:#018867;
+	box-sizing: border-box;
+	text-align:center;
+	color:#fff;
+	font-size:1.2rem;
+	line-height:2rem;
+}
+
+.footer .foot-menu img{
+	display:block;
+	margin:.8rem auto 0;
+	height:2rem;
+}
+
+.footer .foot-menu a:nth-of-type(4){
+	background:#4eac95;	
+}
+
+.footer .foot-menu a:nth-of-type(4) img{
+	margin:1.2rem auto 0;
+	height:3rem;
 }
