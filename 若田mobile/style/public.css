@@ -88,6 +88,7 @@
 
 /*底部*/
 .footer{
+	padding-bottom:6rem;
 	width:100%;
 	overflow: auto;
 }
