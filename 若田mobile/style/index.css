@@ -953,29 +953,40 @@
 	background:none;
 	width:80%;
 	font-size:1.2rem;
-	color:#888;
+	color:#000;
 	-moz-appearance:textfield;  
 }
 
 .message .tab .txt{
 	position:relative;
 	overflow:hidden;
+	height:10rem;
+}
+
+.message .txt span{
+	display:block;
+	padding:.4rem 4% 0;
+	width:96%;
+	height:2rem;
+	color:#888;
+	line-height:1.6rem;
+	font-size:1.2rem;
+	border-radius:.6rem .6rem 0 0;
+	background:#f9f7f3;
 }
 
 
 .message .tab textarea{
-	overflow:hidden;
 	display:block;
-	padding:.4rem 4%;
+	padding:0 4%;
 	width:92%;
-	height:6rem;
-	border-radius:.6rem;
+	height:7rem;
+	border-radius:0 0 .6rem .6rem;
 	background:#f9f7f3;
 	color:#000;
 	line-height:1.6rem;
 	font-size:1.2rem;
 	resize:none;
-	color:#888;	
 }
 
 .message .button{
