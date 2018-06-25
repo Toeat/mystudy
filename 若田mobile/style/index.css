@@ -206,6 +206,7 @@
 	width:2.2rem;
 	height:2.2rem;
 	z-index:99;
+	background:none;
 }
 
 .base .btnl{
@@ -250,11 +251,15 @@
 }
 
 .product .list-cont{
+	position:relative;
 	margin-top:2rem;
 	height:18rem;
 }
 
 .product .list-cont li{
+	position:absolute;
+	top:0;
+	left:0;
 	display:none;
 	width:100%;
 	height:18rem;
@@ -445,13 +450,18 @@
 }
 
 .future .cont{
+	position:relative;
 	overflow:hidden;
+	height: 19rem;
 }
 
 .future .cont li{
+	position:absolute;
+	top:0;
+	left:0;
 	display:none;
 	width:100%;
-	height:18rem;
+	height:19rem;
 }
 
 .future .cont .show{
@@ -473,9 +483,9 @@
 .future .txt p{
 	float:left;
 	overflow: hidden;
-	padding:.4rem 4% 0;
+	padding:.4rem 4%;
 	width:76%;
-	height:3rem;
+	height:2.4rem;
 	font-size:1rem;
 	color:#666;
 	display: -webkit-box;
@@ -539,8 +549,10 @@
 }
 
 .stage .cont{
+	position:relative;
 	margin-top:1rem;
 	overflow:hidden;
+	height:27rem;
 }
 
 .stage .cont .show{
@@ -548,6 +560,9 @@
 }
 
 .stage .cont li{
+	position:absolute;
+	top:0;
+	left:0;
 	display:none;
 }
 
@@ -772,7 +787,7 @@
 	border:2px solid #018867;
 	box-sizing:border-box;
 	color:#018867;
-	line-height:1.88rem;
+	line-height:1.8rem;
 }
 
 
